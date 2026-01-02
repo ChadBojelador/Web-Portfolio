@@ -1,0 +1,314 @@
+/* experiences.css */
+.experience-card.animate-in {
+  animation: fadeInUp 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating elements */
+.floating-experience {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.05);
+  font-size: 8rem;
+  z-index: 0;
+  user-select: none;
+  pointer-events: none;
+  font-weight: 800;
+}
+
+.floating-experience:nth-child(1) {
+  top: 10%;
+  left: 5%;
+  transform: rotate(-15deg);
+}
+
+.floating-experience:nth-child(2) {
+  top: 40%;
+  right: 10%;
+  transform: rotate(10deg);
+}
+
+.floating-experience:nth-child(3) {
+  bottom: 20%;
+  left: 8%;
+  transform: rotate(5deg);
+}
+
+/* Add these to your existing .experience-card styles */
+.experience-card {
+  opacity: 0; /* Start hidden */
+  transform: translateY(30px);
+}
+.experiences-container {
+  background-color: rgb(21, 19, 18);
+  color: #f0f0f0;
+  font-family: 'Inter', sans-serif;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.experiences-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.experiences-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ffffff, #cccccc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.title-divider {
+  height: 3px;
+  width: 120px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));
+  margin: 0 auto;
+  position: relative;
+}
+
+.title-divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255,255,255,0.2);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: lineGrow 1.2s 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.experiences-list {
+  display: grid;
+  gap: 2.8rem;
+}
+
+.experience-card {
+  background: rgba(30, 28, 27, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2.2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.experience-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.experience-card:hover::before {
+  opacity: 1;
+}
+
+.experience-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.experience-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0 0 0.8rem 0;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.experience-subheader {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.experience-company {
+  font-weight: 500;
+  font-size: 1.15rem;
+  position: relative;
+  padding-left: 1.8rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.experience-company::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.experience-period {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+}
+
+.experience-description {
+  line-height: 1.7;
+  margin-bottom: 1.8rem;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.achievements-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  position: relative;
+  padding-left: 1.8rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.achievements-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.achievements-list {
+  padding-left: 1.8rem;
+}
+
+.achievement-item {
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1.8rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: flex-start;
+}
+
+.achievement-marker {
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+/* Animations */
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Floating elements */
+.floating-experience {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.05);
+  font-size: 8rem;
+  z-index: 0;
+  user-select: none;
+  pointer-events: none;
+  font-weight: 800;
+}
+
+.floating-experience:nth-child(1) {
+  top: 10%;
+  left: 5%;
+  transform: rotate(-15deg);
+}
+
+.floating-experience:nth-child(2) {
+  top: 40%;
+  right: 10%;
+  transform: rotate(10deg);
+}
+
+.floating-experience:nth-child(3) {
+  bottom: 20%;
+  left: 8%;
+  transform: rotate(5deg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .experiences-container {
+    padding: 3rem 1.5rem;
+  }
+  
+  .experiences-title {
+    font-size: 2.3rem;
+  }
+  
+  .experience-subheader {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .experience-period {
+    align-self: flex-start;
+  }
+  
+  .experience-card {
+    padding: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .experiences-title {
+    font-size: 2rem;
+  }
+  
+  .experience-title {
+    font-size: 1.6rem;
+  }
+  
+  .experience-card {
+    padding: 1.5rem;
+  }
+  
+  .experience-description {
+    font-size: 1rem;
+  }
+}

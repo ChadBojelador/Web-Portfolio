@@ -1,0 +1,114 @@
+/* Project Panel Styles */
+.project-panel {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: clamp(5rem, 10vw, 10rem);
+    z-index: 10;
+}
+
+.details-tab {
+    flex: 0.8;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    z-index: 10;
+}
+
+.video-tab {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    padding: clamp(1rem, 2vw, 1.25rem);
+}
+
+.video-player {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    aspect-ratio: 16/9;
+}
+
+.panel-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    margin-bottom: 0.75rem;
+    color: #000;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.title-underline {
+    height: 1.5px;
+    width: min(100%, 350px);
+    background-color: #000000;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.details-content {
+    font-size: clamp(1rem, 1.25vw, 1.1rem);
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
+    max-width: 100%;
+    text-align: justify;
+}
+
+.view-button {
+    background-color: transparent;
+    color: #000;
+    border: 2px solid #000;
+    padding: 0.75rem clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.view-button:hover {
+    background-color: #000;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .project-panel {
+        flex-direction: column;
+    }
+    
+    .video-tab {
+        order: -1; /* Video first on mobile */
+        aspect-ratio: 16/9; /* Maintain video ratio */
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-panel {
+        width: 95%;
+        margin-top: 3.5rem;
+    }
+    
+    .details-tab {
+        padding: 1.75rem;
+    }
+    
+    .view-button {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,0 +1,25 @@
+.sign-container{
+  display: flex;
+  font-family: 'Poppins';
+  gap: 2rem;
+  margin-top: 8vh;
+}
+.sign1,.sign2, .sign3{
+line-height: 2rem;
+padding-right: 1rem;
+}
+.sign1 h1, .sign2 h1, .sign3 h1{
+  color: #fdfdfd;
+  font-size: 7vw;
+  margin-bottom: 1rem;
+  font-weight: 200;
+}
+.sign1 p, .sign2 p, .sign3 p{
+    overflow-wrap: break-word;
+    color: #8b8786;
+    width: 7rem;
+    line-height: 1rem;
+    font-weight: 100;
+margin-top: 0;
+padding-top: 1rem;
+}
