@@ -1,0 +1,52 @@
+/* CSS Variables - Centralized Design Tokens */
+:root {
+  /* Colors */
+  --bg-primary: rgb(21, 19, 18);
+  --bg-secondary: rgba(255, 255, 255, 0.03);
+  --bg-card: rgba(30, 28, 27, 0.9);
+  --text-primary: #ffffff;
+  --text-secondary: #99908f;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --text-dark: #353334;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.4);
+  
+  /* Box Colors */
+  --color-orange: #f46c38;
+  --color-alice: aliceblue;
+  --color-purple: #7e4ec5;
+  --color-lime: #c4ff41;
+  --color-cyan: #61dafb;
+  --color-teal: #00758f;
+  --color-green: #68a063;
+  --color-red: #ff5733;
+  --color-blue: #2965f1;
+  --color-yellow: #f0db4f;
+  --color-sky: #38bdf8;
+  
+  /* Spacing */
+  --spacing-xs: 0.5em;
+  --spacing-sm: 1em;
+  --spacing-md: 1.5em;
+  --spacing-lg: 2em;
+  --spacing-xl: 3em;
+  
+  /* Font Family */
+  --font-primary: 'Poppins', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  
+  /* Border Radius */
+  --radius-sm: 0.5em;
+  --radius-md: 1em;
+  --radius-lg: 12px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-smooth: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-medium: 0.3s ease;
+  
+  /* Shadows */
+  --shadow-sm: 0 10px 25px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 15px 40px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+}

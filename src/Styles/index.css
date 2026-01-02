@@ -1,12 +1,13 @@
 @import url('https://fonts.cdnfonts.com/css/poppins');
+@import './variables.css';
 
-*{
+* {
   margin: 0;
-  padding: 0;;
+  padding: 0;
 }
-body {
-  background-color: rgb(21, 19, 18);
 
+body {
+  background-color: var(--bg-primary);
 }
 body::-webkit-scrollbar {
   display: none;             /* Chrome, Safari, Opera */
@@ -15,14 +16,19 @@ section::-webkit-scrollbar {
   display: none;             /* Chrome, Safari, Opera */
 }
 nav {
-  background-color: rgba(255, 255, 255, 0.03);
-  display: flex; /* Changed from 'block' */
+  background-color: var(--bg-secondary);
+  display: flex;
   justify-content: center;
   align-items: center;
   width: fit-content;
-  border-radius: 1em;
-  margin: 3vh auto 0; /* Centered horizontally */
-  padding: 0.5em 1.5em; /* Better padding */
+  border-radius: var(--radius-md);
+  margin: 3vh auto 0;
+  padding: var(--spacing-xs) 1.5em;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
 .list-container {
   list-style: none;
@@ -41,17 +47,15 @@ header{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1em;
-  width: 2em; /* Changed from 3vw to fixed size */
-  border-radius: 0.5em;
-  padding: 0.5em; /* Add padding */
+  height: var(--spacing-sm);
+  width: 2em;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs);
 }
 
-
-
-.Title{
-  color: #ffffff;
-  font-family: 'Poppins';
+.Title {
+  color: var(--text-primary);
+  font-family: var(--font-primary);
   font-size: 7vw;
   margin-top: 3vh;
 }
@@ -61,23 +65,24 @@ header{
   line-height: 5rem;
   padding-top: 1em;
 }
-.title-container p{
-  color: #99908f;
+.title-container p {
+  color: var(--text-secondary);
   font-size: 2vw;
 }
-#title1{
+
+#title1 {
   display: flex;
-  color: #353334;
+  color: var(--text-dark);
 }
 .p-container{
   width: 35vw;
   padding-top: 1.5rem;
 }
 .p-container p {
-  font-size: 1.2rem; /* Changed from fixed 15px */
-  font-family: 'Poppins';
-  line-height: 1; /* Added for better readability */
-  margin: 0.5rem 0; /* Added spacing between paragraphs */
+  font-size: 1.2rem;
+  font-family: var(--font-primary);
+  line-height: 1;
+  margin: 0.5rem 0;
 }
 
 .header-container{
@@ -90,8 +95,8 @@ header{
   height: 1.5em;
   width: 1.5em;
   object-fit: contain;
-  filter: brightness(0) invert(1); /* Changed from invert(100%) */
-  transition: transform 0.2s ease-in-out;
+  filter: brightness(0) invert(1);
+  transition: transform var(--transition-fast);
 }
 
 /* Specific icon hover effects */
@@ -133,34 +138,34 @@ header{
   padding: 2rem;
   color: white;
 }
-.main-contain aside{
+.main-contain aside {
   position: sticky;
   display: flex;
   flex-direction: column;
   align-items: center;
-    height: 80vh;
-    width: 50vh;
-    margin-left: 10vw;
-    margin-top: 5vh;
-    background-color: #ffffff;
-    border-radius: 1em;
- pointer-events: none;
+  height: 80vh;
+  width: 50vh;
+  margin-left: 10vw;
+  margin-top: 5vh;
+  background-color: var(--text-primary);
+  border-radius: var(--radius-md);
+  pointer-events: none;
   top: 0;
   align-self: flex-start;
-
   padding-top: 4vh;
 }
 aside * {
   pointer-events: auto;
 }
-.picture{
+.picture {
   height: 49vh;
   width: 18vw;
-  border-radius:1.2em;
+  border-radius: 1.2em;
   margin-top: 0;
 }
-.description-pic{
-  font-family: 'Poppins';
+
+.description-pic {
+  font-family: var(--font-primary);
   margin-top: 0;
   padding-top: 0;
   display: flex;
@@ -174,13 +179,12 @@ aside * {
   margin-top: 0;
   padding-top: 0;
 }
-.description-pic p{
-    font-weight: 500;
-    margin-top: 0;
-     padding-top: 0;
-     color: #737576;
-     text-align: center;
-
+.description-pic p {
+  font-weight: 500;
+  margin-top: 0;
+  padding-top: 0;
+  color: #737576;
+  text-align: center;
 }
 
 .header-container2 {
@@ -229,20 +233,19 @@ aside * {
 }
 .boxes {
   display: flex;
-  gap: 0.5rem; /* Reduced gap */
+  gap: 0.5rem;
   flex-wrap: wrap;
-
   max-width: 600px;
   margin-top: 1rem;
-  font-family: 'Poppins';
-  font-weight: 500; /* Reduced margin */
+  font-family: var(--font-primary);
+  font-weight: 500;
 }
 .box {
   padding: 0.4rem 1rem;
   border-radius: 25px;
   font-size: 0.75rem;
-  line-height: 1.7em; /* Fix: better vertical spacing */
-  font-family: 'Poppins', sans-serif;
+  line-height: 1.7em;
+  font-family: var(--font-primary);
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -252,19 +255,17 @@ aside * {
   white-space: nowrap;
 }
 
-
-
-.box-1 { background-color: #f46c38; padding-left: 2em;padding-right: 2em;}
-.box-2 { background-color: aliceblue; }
-.box-3 { background-color: #7e4ec5; color: white;padding-left: 1.5em;padding-right: 1.5em; }
-.box-4 { background-color: #c4ff41; padding-left: 1.5em;padding-right: 1.5em;}
-.box-5 { background-color: #61dafb; }
-.box-6 { background-color: #00758f; color: white; padding-left: 2em;padding-right: 2em;}
-.box-7 { background-color: #68a063; color: white; padding-left: 1.7em;padding-right: 1.7em;}
-.box-8 { background-color: #ff5733; color: white; }
-.box-9 { background-color: #2965f1; color: white; }
-.box-10 { background-color: #f0db4f;padding-left: 2em;padding-right: 2em; }
-.box-11 { background-color: #38bdf8; }
+.box-1 { background-color: var(--color-orange); padding-left: 2em; padding-right: 2em; }
+.box-2 { background-color: var(--color-alice); }
+.box-3 { background-color: var(--color-purple); color: white; padding-left: 1.5em; padding-right: 1.5em; }
+.box-4 { background-color: var(--color-lime); padding-left: 1.5em; padding-right: 1.5em; }
+.box-5 { background-color: var(--color-cyan); }
+.box-6 { background-color: var(--color-teal); color: white; padding-left: 2em; padding-right: 2em; }
+.box-7 { background-color: var(--color-green); color: white; padding-left: 1.7em; padding-right: 1.7em; }
+.box-8 { background-color: var(--color-red); color: white; }
+.box-9 { background-color: var(--color-blue); color: white; }
+.box-10 { background-color: var(--color-yellow); padding-left: 2em; padding-right: 2em; }
+.box-11 { background-color: var(--color-sky); }
 @media (pointer: coarse) {
   .cursor,
   .cursor-trail {

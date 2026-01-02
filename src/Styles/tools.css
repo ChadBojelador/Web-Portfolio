@@ -1,4 +1,5 @@
-/* Updated tools.css */
+@import './variables.css';
+
 .tools-container {
   width: 100%;
 }
@@ -8,7 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 5vw; /* Side margins */
+  padding: 0 5vw;
 }
 
 .section-content {
@@ -35,16 +36,16 @@
   transform: translateY(20px);
   position: relative;
   overflow: hidden;
-  border-radius: 1em;
-  transition: transform 0.3s ease;
-  height: 100%; /* Ensure consistent height */
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-medium);
+  height: 100%;
 }
 
 .tool-content {
   position: relative;
   padding: 1.5rem;
   height: 100%;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all var(--transition-smooth);
   z-index: 2;
 }
 
@@ -60,7 +61,7 @@
     transparent 80%
   );
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--transition-medium);
   z-index: 1;
 }
 
@@ -73,19 +74,19 @@
 }
 
 .tool-card:hover .tool-content {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-lg);
 }
 
 .tool-text {
   position: relative;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-primary);
   font-weight: 500;
   font-size: 1.1rem;
   z-index: 3;
 }
 
 .category-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-primary);
   font-size: 2.5rem;
   margin-bottom: 2rem;
   color: white;
@@ -95,7 +96,7 @@
 
 .text-head {
   color: white;
-  font-family: 'Poppins';
+  font-family: var(--font-primary);
   font-size: 15vh;
   margin: 0;
   opacity: 0;
@@ -104,17 +105,17 @@
 }
 
 /* Color classes */
-.box-1 { background-color: #f46c38; padding-left: 2em;padding-right: 2em;}
-.box-2 { background-color: aliceblue; }
-.box-3 { background-color: #7e4ec5; color: white;padding-left: 1.5em;padding-right: 1.5em; }
-.box-4 { background-color: #c4ff41; padding-left: 1.5em;padding-right: 1.5em;}
-.box-5 { background-color: #61dafb; }
-.box-6 { background-color: #00758f; color: white; padding-left: 2em;padding-right: 2em;}
-.box-7 { background-color: #68a063; color: white; padding-left: 1.7em;padding-right: 1.7em;}
-.box-8 { background-color: #ff5733; color: white; }
-.box-9 { background-color: #2965f1; color: white; }
-.box-10 { background-color: #f0db4f;padding-left: 2em;padding-right: 2em; }
-.box-11 { background-color: #38bdf8; }
+.box-1 { background-color: var(--color-orange); padding-left: 2em; padding-right: 2em; }
+.box-2 { background-color: var(--color-alice); }
+.box-3 { background-color: var(--color-purple); color: white; padding-left: 1.5em; padding-right: 1.5em; }
+.box-4 { background-color: var(--color-lime); padding-left: 1.5em; padding-right: 1.5em; }
+.box-5 { background-color: var(--color-cyan); }
+.box-6 { background-color: var(--color-teal); color: white; padding-left: 2em; padding-right: 2em; }
+.box-7 { background-color: var(--color-green); color: white; padding-left: 1.7em; padding-right: 1.7em; }
+.box-8 { background-color: var(--color-red); color: white; }
+.box-9 { background-color: var(--color-blue); color: white; }
+.box-10 { background-color: var(--color-yellow); padding-left: 2em; padding-right: 2em; }
+.box-11 { background-color: var(--color-sky); }
 
 /* Text color adjustments */
 .box-2 .tool-text,
