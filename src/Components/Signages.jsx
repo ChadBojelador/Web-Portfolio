@@ -14,7 +14,6 @@ const containerVariants = {
 };
 
     return(
-        <>
         <div className="sign-container">
             <div className="sign1">
                 <motion.h1 variants={itemVariants}>+15</motion.h1>
@@ -27,10 +26,8 @@ const containerVariants = {
             <div className="sign3">
                 <motion.h1 variants={itemVariants}>+3</motion.h1>
                 <motion.p variants={itemVariants}>Affiliated Organizations</motion.p>
-                </div>            
-
+                </div>
         </div>
-        </>
     );
 
 }

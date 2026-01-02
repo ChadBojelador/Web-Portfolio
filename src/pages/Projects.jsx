@@ -1,76 +1,17 @@
 // Projects.jsx
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectPanel from '../Components/ProjectPanel';
 import CustomCursor from '../Components/CustomCursor';
 import Navigation from '../Components/Navigation';
 import '../Styles/Projects.css';
-import pasyentrack from '../assets/pasyentrack.mp4';
-import smw from '../assets/smw.mp4';
+import { projects } from '../data/projects';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Projects() {
-  const ctRef = useRef(null);
-  const textLeftRef = useRef(null);
-  const textRightRef = useRef(null);
-  const tabsSectionRef = useRef(null);
   const introTextRef = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const videoSources = [
-  pasyentrack,
-  smw
-];
-   const projects = [
-        {
-            title: "Medical Record Management System Using C++ and Qt Framework",
-            details: "The Medical Record Management System, developed using C++ with a graphical user interface, features a stacked widget design that allows smooth navigation between login, patient data entry, and record viewing sections. It combines a MySQL database for persistent data storage with a Binary Search Tree (BST) for efficient in-memory operations such as searching, insertion, and deletion of patient records.",
-            videoSrc: videoSources[0],
-            link:"https://github.com/ChadBojelador/Medical-Record-Management-System"
-        },
-        {
-            title: "Smart Waste Bin with Plastic Shredder",
-            details: "Powered by Arduino Uno R3 components, the system detects and shreds plastic while it records the shredding process and logs data in real-time to Google Sheets via Google Apps Script. Notably, this system has been tested and validated by 10 engineers from diverse fields, ensuring its interdisciplinary applicability.",
-            videoSrc: videoSources[1],
-            link:"https://drive.google.com/file/d/1CuGlOQnRn8RLUau6sRM7JuAmdNSCld7J/view?usp=drive_link"
-        }
-    ];
-  // IntersectionObserver for "PROJECT / PROFILE"
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            textLeftRef.current.classList.add('animate-left');
-            textRightRef.current.classList.add('animate-right');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ctRef.current) observer.observe(ctRef.current);
-    return () => {
-      if (ctRef.current) observer.unobserve(ctRef.current);
-    };
-  }, []);
-
-  // Scroll listener for determining active tab
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!tabsSectionRef.current) return;
-      const scrollY = window.scrollY;
-      const sectionTop = tabsSectionRef.current.offsetTop;
-      const inSection = scrollY - sectionTop;
-      const idx = Math.floor(inSection / (window.innerHeight * 1.5));
-      setCurrentIndex(Math.min(1, Math.max(0, idx)));
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // ScrollTrigger pinning
   useEffect(() => {
@@ -85,19 +26,6 @@ function Projects() {
       });
     }
 
-    if (tabsSectionRef.current) {
-      const tabsLeftEl = tabsSectionRef.current.querySelector('.tabs_left');
-
-      ScrollTrigger.create({
-        trigger: tabsSectionRef.current,
-        start: 'top 5vh',
-        end: 'bottom bottom',
-        pin: tabsLeftEl,
-        pinSpacing: false,
-        markers: false,
-      });
-    }
-
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
@@ -105,31 +33,9 @@ function Projects() {
 
   return (
     <div className="project-container">
-      <div className="sign">
-        <div className="hero-section">
-          <div className="hero-content">
-            <p>Focused on</p>
-            <div className="dropping-texts">
-              <div>Growth</div>
-              <div>Purpose</div>
-              <div>Excellence</div>
-              <div>IMPACT!</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="nav">
         <Navigation />
         <CustomCursor />
-      </div>
-
-      {/* PROJECT / PROFILE */}
-      <div className="ct" ref={ctRef}>
-        <div className="split-text-container">
-          <span className="text-part left" ref={textLeftRef} >PROJECT </span>
-          <span className="text-part right" ref={textRightRef}>PROFILE</span>
-        </div>
       </div>
 
       {/* Intro Section */}

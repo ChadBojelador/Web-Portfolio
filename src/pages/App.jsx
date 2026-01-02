@@ -1,7 +1,6 @@
 // pages/App.jsx
-import { useState, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import picture from '../assets/picture.svg';
 import CustomCursor from '../Components/CustomCursor';
 import Navigation from '../Components/Navigation';
@@ -39,8 +38,8 @@ function App() {
       >
         <Navigation />
 
-        <div className="header-container2" style={{zIndex: 1}}>
-          <aside style={{zIndex: 1}}>
+        <div className="header-container2">
+          <aside>
             <motion.img
               className="picture"
               src={picture}
@@ -62,7 +61,7 @@ function App() {
             </motion.div>
           </aside>
             <div className="content-wrapper">
-          <section style={{zIndex: 1}}>
+          <section>
             <div className='content-container'>
             <motion.div
               className="title-container"
@@ -113,8 +112,6 @@ function App() {
                   whileHover={{ scale: 1.05 }}
                 >
                   <p>{tech}</p>
-                     
-                     
                 </motion.div>
               ))}
             </motion.div>
@@ -123,9 +120,7 @@ function App() {
               initial="hidden"
               animate="visible"
             >
-
-     <Signages></Signages>
-
+              <Signages />
             </motion.div>
           
                        </div>

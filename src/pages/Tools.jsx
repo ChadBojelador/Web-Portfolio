@@ -2,27 +2,10 @@
 import { useEffect, useRef } from 'react';
 import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@12.15.0/+esm";
 import Navigation from '../Components/Navigation';
+import { tools } from '../data/tools';
 import '../Styles/tools.css'
 
 const Tools = () => {
-  const tools = [
-    {
-      category: "Programming Languages",
-      items: ["JavaScript (ES6+)", "Python", "Java", "C++", "PHP"]
-    },
-    {
-      category: "Frontend Development",
-      items: ["React", "HTML5", "CSS3/Sass", "Tailwind CSS", "Framer Motion"]
-    },
-    {
-      category: "Backend Development",
-      items: ["Node.js", "Express", "MySQL", "MongoDB", "REST APIs"]
-    },
-    {
-      category: "Tools & Platforms",
-      items: ["Git/GitHub", "VS Code", "Wix", "Figma", "QT Creator", "Vercel"]
-    }
-  ];
 
   // Color classes with their specific styles
   const colorClasses = [
