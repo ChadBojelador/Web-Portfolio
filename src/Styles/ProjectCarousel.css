@@ -1,0 +1,174 @@
+/* ===================================
+   PROJECT CAROUSEL STYLES
+   Seamless loop carousel for projects
+   =================================== */
+
+.project-section-wrapper {
+  min-height: 100vh;
+  padding: 5rem 0;
+  background-color: rgb(21, 19, 18);
+  position: relative;
+}
+
+/* Project Title - matching Professional Experience style */
+.project-header {
+  text-align: center;
+    position: relative;
+}
+
+.project-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(90deg, #ffffff, #cccccc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.05em;
+  margin-bottom: 1.5rem;
+}
+
+/* Gallery Container */
+.project-gallery {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 750px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Carousel Container */
+.project-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 80vw;
+  height: 150px;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual Project Cards */
+.project-carousel-card {
+  position: absolute;
+  left: 50%;
+  top: 3%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 1000px;
+  will-change: transform, opacity;
+}
+
+/* Drag Proxy - invisible layer for mobile dragging */
+.drag-proxy {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: grab;
+  z-index: 5;
+}
+
+.drag-proxy:active {
+  cursor: grabbing;
+}
+
+/* Navigation Buttons */
+.project-actions {
+  position: relative;
+  margin-top: 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 1000;
+}
+
+.project-prev,
+.project-next {
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  background-color: var(--color-orange);
+  border: none;
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  outline: none;
+  white-space: nowrap;
+}
+
+.project-prev:hover,
+.project-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  background-color: var(--color-yellow);
+}
+
+.project-prev:active,
+.project-next:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .project-section-wrapper {
+    padding: 3rem 1rem;
+  }
+
+  .project-title {
+    font-size: 2rem;
+  }
+
+  .project-carousel {
+    max-width: 95%;
+    height: 500px;
+  }
+
+  .project-carousel-card {
+    max-width: 100%;
+  }
+
+  .project-actions {
+    margin-top: 2rem;
+    gap: 1.5rem;
+  }
+
+  .project-prev,
+  .project-next {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-title {
+    font-size: 1.5rem;
+  }
+
+  .project-carousel {
+    height: 450px;
+  }
+
+  .project-prev,
+  .project-next {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+}

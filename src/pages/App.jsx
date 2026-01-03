@@ -18,6 +18,7 @@ import { certificates } from '../data/certificates';
 import { tools } from '../data/tools';
 import '../Styles/index.css';
 import '../Styles/Projects.css';
+import '../Styles/ProjectCarousel.css';
 import '../Styles/certificates.css';
 import '../Styles/tools.css';
 import '../Styles/contact.css';
@@ -154,12 +155,92 @@ function App() {
       };
     });
 
+    // Project Carousel Setup - Horizontal Slide with Center Focus
+    const setupProjectCarousel = () => {
+      const projectCards = gsap.utils.toArray('.project-carousel-card');
+      if (projectCards.length === 0) return;
+
+      let currentIndex = 0;
+      const cardWidth = 1050; // Width of each card (increased)
+      const gap = 80; // Gap between cards
+
+      // Initialize all cards - position horizontally (all same size)
+      projectCards.forEach((card, index) => {
+        const distance = index - currentIndex;
+        const isCurrent = index === currentIndex;
+        gsap.set(card, {
+          x: distance * (cardWidth + gap),
+          scale: 1, // All cards same size
+          opacity: isCurrent ? 1 : 0.5,
+          zIndex: isCurrent ? 100 : 10
+        });
+      });
+
+      const updateCards = (newIndex) => {
+        projectCards.forEach((card, index) => {
+          const distance = index - newIndex;
+          const isCurrent = index === newIndex;
+          gsap.to(card, {
+            x: distance * (cardWidth + gap),
+            scale: 1, // All cards same size
+            opacity: isCurrent ? 1 : 0.5,
+            zIndex: isCurrent ? 100 : 10,
+            duration: 0.6,
+            ease: "power2.out"
+          });
+        });
+        currentIndex = newIndex;
+      };
+
+      // Button click handlers
+      const nextBtn = document.querySelector('.project-next');
+      const prevBtn = document.querySelector('.project-prev');
+      
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          const nextIndex = (currentIndex + 1) % projectCards.length;
+          updateCards(nextIndex);
+        });
+      }
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          const prevIndex = (currentIndex - 1 + projectCards.length) % projectCards.length;
+          updateCards(prevIndex);
+        });
+      }
+
+      // Draggable setup for mobile
+      let startIndex = currentIndex;
+      Draggable.create('.drag-proxy', {
+        type: "x",
+        trigger: ".project-carousel",
+        onPress() {
+          startIndex = currentIndex;
+        },
+        onDrag() {
+          const dragAmount = this.x - this.startX;
+          if (Math.abs(dragAmount) > 50) {
+            if (dragAmount < 0 && currentIndex < projectCards.length - 1) {
+              updateCards(currentIndex + 1);
+            } else if (dragAmount > 0 && currentIndex > 0) {
+              updateCards(currentIndex - 1);
+            }
+          }
+        }
+      });
+    };
+
+    setTimeout(setupProjectCarousel, 100);
+
     return () => {
       document.body.style.cursor = 'default';
       if (smoother) smoother.kill();
       ScrollTrigger.getAll().forEach((st) => st.kill());
       certCards.forEach(card => certObserver.unobserve(card));
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (seamlessLoopRef.current) seamlessLoopRef.current.kill();
+      if (scrubRef.current) scrubRef.current.kill();
+      if (triggerRef.current) triggerRef.current.kill();
     };
   }, []);
 
@@ -170,7 +251,7 @@ function App() {
 
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          {/* HOME SECTION */}}
+          {/* HOME SECTION */}
       <section id="home" className='main-contain'>
         <div className="App">
           <motion.div
@@ -338,19 +419,30 @@ function App() {
 
       {/* PROJECTS SECTION */}
       <section id="projects" className="project-container">
-        {/* PROJECT SHOWCASE IN NEW SECTION */}
-        <div style={{ minHeight: '100vh', padding: '5rem 0', backgroundColor: 'rgb(21, 19, 18)' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h1 className="header">PROJECT SHOWCASE</h1>
-            {projects.map((project, index) => (
-              <ProjectPanel 
-                key={index}
-                title={project.title}
-                details={project.details}
-                videoSrc={project.videoSrc}
-                link={project.link}
-              />
-            ))}
+        {/* PROJECT CAROUSEL */}
+        <div className="project-section-wrapper">
+          <div className="project-header">
+            <h1 className="project-title">PROJECT SHOWCASE</h1>
+          </div>
+          
+          <div className="project-gallery">
+            <div className="drag-proxy"></div>
+            <ul className="project-carousel">
+              {projects.map((project, index) => (
+                <li key={index} className="project-carousel-card">
+                  <ProjectPanel 
+                    title={project.title}
+                    details={project.details}
+                    videoSrc={project.videoSrc}
+                    link={project.link}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="project-actions">
+            <button className="project-prev">Previous</button>
+            <button className="project-next">Next</button>
           </div>
         </div>
 

@@ -43,7 +43,7 @@ function Projects() {
       {/* NEW SECTION AT TOP OF PROJECTS */}
       <div style={{ minHeight: '100vh', padding: '5rem 0', backgroundColor: 'rgb(21, 19, 18)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h1 style={{ fontSize: '4rem', color: 'white', marginBottom: '2rem', textAlign: 'center' }}>Projects</h1>
+          <h1 style={{ fontSize: '4rem', color: 'white', marginBottom: '1rem', textAlign: 'center' }}>PROJECTS</h1>
           <p style={{ fontSize: '1.2rem', color: '#999', lineHeight: '1.8', textAlign: 'center' }}>
             jskaj
           </p>
