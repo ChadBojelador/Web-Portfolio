@@ -1,19 +1,35 @@
 @import './variables.css';
 
+.cert-exp-wrapper {
+  display: flex;
+  background: var(--bg-primary);
+  min-height: 100vh;
+  gap: 0;
+}
+
 .cert-container {
   background: var(--bg-primary);
-  font-family: var(--font-inter);
+  font-family: 'Poppins';
   color: var(--text-primary);
-  min-height: 100vh;
+  width: 50%;
   overflow-x: hidden;
   padding: 2rem;
+  padding-left: 10vw;
+  padding-right: 2rem;
   position: relative;
+}
+
+.exp-container {
+  width: 50%;
+  padding: 2rem;
+  padding-right: 10vw;
+  padding-left: 2rem;
 }
 
 /* Floating elements */
 .floating {
   position: absolute;
-  color: rgba(255, 255, 255, 0.05);
+  color: rgba(161, 73, 73, 0.05);
   font-size: 10rem;
   z-index: 0;
   user-select: none;
@@ -72,9 +88,9 @@
 /* Certificate grid */
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .cert-card {
@@ -88,24 +104,24 @@
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  min-height: 400px;
+  min-height: 280px;
 }
 
 .cert-card:hover {
-  transform: translateY(-12px);
+  transform: translateY(-8px);
   border-color: var(--border-hover);
   box-shadow: var(--shadow-md);
 }
 
 .cert-header {
-  padding: 1.8rem;
+  padding: 1.2rem;
   border-bottom: 1px solid var(--border-color);
   background: var(--bg-secondary);
 }
 
 .cert-header h2 {
-  font-size: 1.6rem;
-  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
   color: var(--text-primary);
   font-weight: 600;
 }
@@ -113,17 +129,17 @@
 .cert-issuer {
   color: var(--text-primary);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 0.85rem;
 }
 
 .cert-date {
   color: rgba(255, 255, 255, 0.6);
-  font-size: 0.95rem;
-  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
 }
 
 .cert-body {
-  padding: 1.8rem;
+  padding: 1.2rem;
   /* Flex grow to take available space */
   flex-grow: 1;
   display: flex;
@@ -132,9 +148,9 @@
 
 .cert-desc {
   color: var(--text-muted);
-  line-height: 1.7;
-  margin-bottom: 1.8rem;
-  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  font-size: 0.85rem;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -144,18 +160,18 @@
 .cert-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 0.5rem;
   /* Push tags to the bottom of the body */
   margin-top: auto;
 }
 
 .cert-tag {
-  border-radius: 6px;
-  font-size: 0.9rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: -0.02em;
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.6rem;
 }
 
 /* Tag color classes */
@@ -172,7 +188,7 @@
 .box-11 { background-color: var(--color-sky); }
 
 .cert-footer {
-  padding: 1.2rem 1.8rem;
+  padding: 0.8rem 1.2rem;
   background: var(--bg-secondary);
   display: flex;
   justify-content: space-between;
@@ -186,9 +202,9 @@
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 0.85rem;
   transition: all var(--transition-medium);
 }
 

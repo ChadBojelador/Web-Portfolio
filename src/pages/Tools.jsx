@@ -3,9 +3,11 @@ import { useEffect, useRef } from 'react';
 import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@12.15.0/+esm";
 import Navigation from '../Components/Navigation';
 import { tools } from '../data/tools';
+import { useScrollNavigation } from '../hooks/useScrollNavigation';
 import '../Styles/tools.css'
 
 const Tools = () => {
+  useScrollNavigation();
 
   // Color classes with their specific styles
   const colorClasses = [

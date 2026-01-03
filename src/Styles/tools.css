@@ -1,5 +1,10 @@
 @import './variables.css';
 
+.tools-page {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
 .tools-container {
   width: 100%;
 }
@@ -79,14 +84,14 @@
 
 .tool-text {
   position: relative;
-  font-family: var(--font-primary);
+  font-family: 'Poppins';
   font-weight: 500;
   font-size: 1.1rem;
   z-index: 3;
 }
 
 .category-title {
-  font-family: var(--font-primary);
+  font-family: 'Poppins';
   font-size: 2.5rem;
   margin-bottom: 2rem;
   color: white;
@@ -96,7 +101,7 @@
 
 .text-head {
   color: white;
-  font-family: var(--font-primary);
+  font-family: 'Poppins';
   font-size: 15vh;
   margin: 0;
   opacity: 0;

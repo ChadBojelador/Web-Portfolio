@@ -4,8 +4,11 @@ import Navigation from '../Components/Navigation';
 import CustomCursor from '../Components/CustomCursor';
 import Experiences from '../Components/Experiences';
 import { certificates } from '../data/certificates';
+import { useScrollNavigation } from '../hooks/useScrollNavigation';
 
 const Certificates = () => {
+  useScrollNavigation();
+  
   useEffect(() => {
     // Certificate card animation on scroll
     const certCards = document.querySelectorAll('.cert-card');

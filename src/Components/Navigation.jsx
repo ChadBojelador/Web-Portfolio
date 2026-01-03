@@ -1,25 +1,35 @@
 // Navigation.jsx
-import { Link } from 'react-router-dom';
 import { navItems } from '../data/navigation';
 
-const Navigation = () => (
-  <header>
-    <nav>
-      <ul className="list-container">
-        {navItems.map((item, index) => (
-          <li className="list" key={index} title={item.label}>
-            <Link to={item.path}>
-              <img
-                className={`icon icon-${item.className}`}
-                src={item.icon}
-                alt={item.alt}
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </header>
-);
+const Navigation = () => {
+  const handleClick = (e, path) => {
+    e.preventDefault();
+    const sectionId = path === '/' ? 'home' : path.substring(1);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <header>
+      <nav>
+        <ul className="list-container">
+          {navItems.map((item, index) => (
+            <li className="list" key={index} title={item.label}>
+              <a href={item.path} onClick={(e) => handleClick(e, item.path)}>
+                <img
+                  className={`icon icon-${item.className}`}
+                  src={item.icon}
+                  alt={item.alt}
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
 export default Navigation;

@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectPanel from '../Components/ProjectPanel';
 import CustomCursor from '../Components/CustomCursor';
 import Navigation from '../Components/Navigation';
+import { useScrollNavigation } from '../hooks/useScrollNavigation';
 import '../Styles/Projects.css';
 import { projects } from '../data/projects';
 
@@ -12,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Projects() {
   const introTextRef = useRef(null);
+  useScrollNavigation();
 
   // ScrollTrigger pinning
   useEffect(() => {
@@ -36,6 +38,16 @@ function Projects() {
       <div className="nav">
         <Navigation />
         <CustomCursor />
+      </div>
+
+      {/* NEW SECTION AT TOP OF PROJECTS */}
+      <div style={{ minHeight: '100vh', padding: '5rem 0', backgroundColor: 'rgb(21, 19, 18)' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h1 style={{ fontSize: '4rem', color: 'white', marginBottom: '2rem', textAlign: 'center' }}>Projects</h1>
+          <p style={{ fontSize: '1.2rem', color: '#999', lineHeight: '1.8', textAlign: 'center' }}>
+            jskaj
+          </p>
+        </div>
       </div>
 
       {/* Intro Section */}

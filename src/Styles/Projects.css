@@ -10,6 +10,11 @@
   --gray-100: whitesmoke;
 }
 
+.project-container {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
 /* New Intro Section Styles */
 .intro-wrapper {
   position: relative;
@@ -61,7 +66,7 @@
   font-size: 2rem;
   font-weight: 500;
   line-height: 1;
-  font-family: var(--font-primary);
+  font-family: 'Poppins';
 }
 
 .hero-content p {
@@ -71,7 +76,7 @@
 
 .text-size-medium {
   font-size: 1.125rem;
-  font-family: var(--font-primary);
+  font-family: 'Poppins';
 }
 .des{
   display: flex;
