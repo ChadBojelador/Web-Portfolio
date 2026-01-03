@@ -1,21 +1,49 @@
+/* ===================================
+   IMPORTS & GLOBAL RESET
+   =================================== */
 @import url('https://fonts.cdnfonts.com/css/poppins');
 @import './variables.css';
 
+/* Global reset - removes default margins/padding */
 * {
   margin: 0;
   padding: 0;
+}
+
+/* HTML/Body base styles */
+html {
+  scroll-behavior: smooth;
+  overflow: visible;
 }
 
 body {
   background-color: var(--bg-primary);
 }
 
+/* ===================================
+   SCROLL SMOOTHER (GSAP)
+   These control the smooth scrolling animation
+   =================================== */
+#smooth-wrapper {
+  overflow: hidden;
+}
+
+#smooth-content {
+  overflow: visible;
+  will-change: transform;
+}
+
+/* Hide scrollbars */
 body::-webkit-scrollbar {
   display: none;             /* Chrome, Safari, Opera */
 }
 section::-webkit-scrollbar {
   display: none;             /* Chrome, Safari, Opera */
 }
+/* ===================================
+   NAVIGATION BAR (Top fixed nav)
+   Edit these to change the navigation menu appearance
+   =================================== */
 nav {
   background-color: var(--bg-secondary);
   display: flex;
@@ -31,6 +59,8 @@ nav {
   transform: translateX(-50%);
   z-index: 1000;
 }
+
+/* Navigation list container */
 .list-container {
   list-style: none;
   display: flex;
@@ -40,10 +70,13 @@ nav {
   margin: 0;
   padding: 0;
 }
+
 header{
   justify-content: center;
   display: flex;
 }
+
+/* Individual navigation list items */
 .list {
   display: flex;
   justify-content: center;
@@ -54,18 +87,25 @@ header{
   padding: var(--spacing-xs);
 }
 
+/* ===================================
+   HOME PAGE - DESKTOP TITLE SECTION
+   "SOFTWARE DEVELOPER" large text
+   =================================== */
 .Title {
   color: var(--text-primary);
   font-family: 'Poppins';
-  font-size: 7vw;
+  font-size: 7vw;           /* Desktop title size */
   margin-top: 3vh;
 }
+
+/* Container for SOFTWARE DEVELOPER titles */
 .title-container{
   display: flex;
   flex-direction: column;
   line-height: 5rem;
   padding-top: 1em;
 }
+
 .title-container p {
   color: var(--text-secondary);
   font-size: 2vw;
@@ -73,12 +113,20 @@ header{
 
 #title1 {
   display: flex;
-  color: var(--text-dark);
+  color: var(--text-dark);  /* Second line color (DEVELOPER) */
 }
+.content-container{
+  padding-left: 4rem;
+}
+/* ===================================
+   HOME PAGE - DESKTOP DESCRIPTION PARAGRAPHS
+   "Focused on building software..." text
+   =================================== */
 .p-container{
   width: 35vw;
   padding-top: 1.5rem;
 }
+
 .p-container p {
   font-size: 1.2rem;
   font-family: 'Poppins';
@@ -86,26 +134,36 @@ header{
   margin: 0.5rem 0;
 }
 
+/* ===================================
+   HOME PAGE - DESKTOP MAIN CONTAINER
+   =================================== */
 .header-container{
   height: 100vh;
-  width: 95vw;
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
+/* ===================================
+   NAVIGATION ICONS
+   Edit size and hover effects here
+   =================================== */
 .icon {
-  height: 1.5em;
+  height: 1.5em;          /* Icon size */
   width: 1.5em;
   object-fit: contain;
   filter: brightness(0) invert(1);
   transition: transform var(--transition-fast);
 }
 
-/* Specific icon hover effects */
+/* Icon hover effects - scales up on hover */
 .icon-home:hover,
 .icon-folder:hover,
 .icon-certificate:hover,
 .icon-tools:hover,
 .icon-about:hover {
-  transform: scale(1.2);
+  transform: scale(1.2);  /* Hover scale amount */
 }
 
 .main-contain section{
@@ -116,8 +174,10 @@ header{
     
  /* Adjust based on your header height */
     min-height: 100vh;
-    overflow: visible;
+    overflow-x: hidden;
     position: absolute;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 .header-container2 {
   display: flex;
@@ -131,7 +191,7 @@ header{
 .content-sections {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 10rem;
   padding-bottom: 4rem;
 }
 
@@ -140,6 +200,10 @@ header{
   padding: 2rem;
   color: white;
 }
+/* ===================================
+   PROFILE CARD - DESKTOP STYLES
+   (Don't modify - only edit mobile section)
+   =================================== */
 .main-contain aside {
   position: sticky;
   display: flex;
@@ -156,9 +220,11 @@ header{
   align-self: flex-start;
   padding-top: 4vh;
 }
+
 aside * {
   pointer-events: auto;
 }
+
 .picture {
   height: 49vh;
   width: 18vw;
@@ -175,12 +241,14 @@ aside * {
   flex-direction: column;
   justify-content: center;
 }
+
 .description-pic h1{
   text-align: center;
   font-size: 2vw;
   margin-top: 0;
   padding-top: 0;
 }
+
 .description-pic p {
   font-weight: 500;
   margin-top: 0;
@@ -195,13 +263,15 @@ aside * {
   position: relative;
 }
 
-/* Add this at the end of your CSS file */
-/* components/CustomCursor.css */
+/* ===================================
+   CUSTOM CURSOR (Desktop only)
+   The glowing cursor that follows mouse
+   =================================== */
 .cursor {
   position: fixed;
   left: 0;
   top: 0;
-  width: 24px;
+  width: 24px;            /* Cursor size */
   height: 24px;
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, 
@@ -210,13 +280,11 @@ aside * {
     rgba(255,255,255,0.3) 100%
   );
   pointer-events: none;
- 
   z-index: 9999;
   transition: transform 0.15s ease-out;
-
-  transform: translate(-50%, -50%);
 }
 
+/* Cursor trail effect */
 .cursor-trail {
   position: fixed;
   left: 0;
@@ -229,23 +297,29 @@ aside * {
   );
   pointer-events: none;
   z-index: 9998;
-    transition: transform 0.3s cubic-bezier(0.15, 0.85, 0.35, 1.1);
-  transform: translate(-50%, -50%);
+  transition: transform 0.3s cubic-bezier(0.15, 0.85, 0.35, 1.1);
   filter: blur(2px);
 }
+/* ===================================
+   TECH SKILL BOXES - DESKTOP
+   (ReactJS, C++, Java, Python, etc.)
+   Edit colors in variables.css
+   =================================== */
 .boxes {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.5rem;            /* Space between boxes */
   flex-wrap: wrap;
   max-width: 600px;
   margin-top: 1rem;
   font-family: 'Poppins';
   font-weight: 500;
 }
+
+/* Individual tech box style */
 .box {
-  padding: 0.4rem 1rem;
-  border-radius: 25px;
-  font-size: 0.75rem;
+  padding: 0.4rem 1rem;   /* Box padding */
+  border-radius: 25px;    /* Rounded corners */
+  font-size: 0.75rem;     /* Text size */
   line-height: 1.7em;
   font-family: 'Poppins';
   font-weight: 500;
@@ -253,21 +327,23 @@ aside * {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #000;
+  color: #000;            /* Default text color */
   white-space: nowrap;
 }
 
-.box-1 { background-color: var(--color-orange); padding-left: 2em; padding-right: 2em; }
-.box-2 { background-color: var(--color-alice); }
-.box-3 { background-color: var(--color-purple); color: white; padding-left: 1.5em; padding-right: 1.5em; }
-.box-4 { background-color: var(--color-lime); padding-left: 1.5em; padding-right: 1.5em; }
-.box-5 { background-color: var(--color-cyan); }
-.box-6 { background-color: var(--color-teal); color: white; padding-left: 2em; padding-right: 2em; }
-.box-7 { background-color: var(--color-green); color: white; padding-left: 1.7em; padding-right: 1.7em; }
-.box-8 { background-color: var(--color-red); color: white; }
-.box-9 { background-color: var(--color-blue); color: white; }
-.box-10 { background-color: var(--color-yellow); padding-left: 2em; padding-right: 2em; }
-.box-11 { background-color: var(--color-sky); }
+/* Individual box colors - corresponds to each tech */
+.box-1 { background-color: var(--color-orange); padding-left: 2em; padding-right: 2em; }  /* ReactJS */
+.box-2 { background-color: var(--color-alice); }                                          /* C++ */
+.box-3 { background-color: var(--color-purple); color: white; padding-left: 1.5em; padding-right: 1.5em; }  /* Java */
+.box-4 { background-color: var(--color-lime); padding-left: 1.5em; padding-right: 1.5em; }  /* Python */
+.box-5 { background-color: var(--color-cyan); }                                          /* Qt */
+.box-6 { background-color: var(--color-teal); color: white; padding-left: 2em; padding-right: 2em; }  /* MySQL */
+.box-7 { background-color: var(--color-green); color: white; padding-left: 1.7em; padding-right: 1.7em; }  /* NodeJS */
+.box-8 { background-color: var(--color-red); color: white; }                             /* HTML */
+.box-9 { background-color: var(--color-blue); color: white; }                            /* CSS */
+.box-10 { background-color: var(--color-yellow); padding-left: 2em; padding-right: 2em; }  /* Javascript */
+.box-11 { background-color: var(--color-sky); }                                          /* Tailwind */
+/* Hide custom cursor on touch devices (mobile/tablet) */
 @media (pointer: coarse) {
   .cursor,
   .cursor-trail {
@@ -275,83 +351,268 @@ aside * {
   }
 }
 @media (max-width: 768px) {
+  /* ===================================
+     MOBILE HOME PAGE - COMPLETE RESPONSIVE LAYOUT
+     =================================== */
   
-
+  /* MOBILE: Main Container */
+  .main-contain {
+    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+  .App {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
   .header-container {
     justify-content: center;
-    display: flex ; /* Allow container to expand */
+    display: flex;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    height: auto;
+    min-height: 100vh;
+    padding: 0;
   }
 
   .header-container2 {
     flex-direction: column;
     width: 100%;
-    height: 70vh;
-    margin-top: 2em;
-  }
-  aside {
-    position: sticky;
-    top: 0;
-    width: 90%;
-    height: 50%;
-    margin: 0 auto 2vh;
-    padding: 15px;
-    order: 1;
-    z-index: 10;        /* ← ensures it stays above the section */
-    background-color: #ffffff;
-    padding-bottom: 0;
-  }
-  .content-wrapper {
-    order: 2; /* Ensure content comes after */
-    width: 100%;
-    margin-top: 0;
-  }
-section {
-    margin-left: 0;
-    padding: 10px;
-
-    height: 10vh;
-
-  }
-
-  .picture {
-    width: 50%;
+    max-width: 100vw;
     height: auto;
-    max-width: 200px;
+    min-height: auto;
+    margin-top: 2em;
+    position: relative;
+    top: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
   }
-
-  .description-pic h1 {
-    font-size: 6vw;
+  
+  /* ===================================
+     MOBILE: Profile Card (White Box)
+     =================================== */
+  
+  /* MOBILE: Card appears first */
+  aside {
+    order: 1;
+    position: relative;
+    top: 0;
+    width: 65%;
+    max-width: 240px;
+    height: auto;
+    min-height: auto;
+    margin: 0 auto 1.5rem;
+    padding: 0.5rem 0.6rem 0.4rem;  /* Reduced bottom padding */
+    z-index: 10;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;  /* Reduced gap */
   }
-
-  .Title {
-    font-size: 10vw;
-    line-height: 1.2;
-    margin-top: 1vh;
+  
+  /* MOBILE: Profile Picture inside card */
+  aside .picture {
+    width: 35%;
+    max-width: 70px;
+    height: auto;
+    margin: 0;
+    border-radius: 0.6rem;  /* Responsive rounded corners */
   }
-
+  
+  /* MOBILE: Text Container inside card */
+  aside .description-pic {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* MOBILE: Name inside card */
+  aside .description-pic h1 {
+    font-size: 0.8rem;
+    margin: 0.05rem 0;
+    padding: 0;
+  }
+  
+  /* MOBILE: Description inside card */
+  aside .description-pic p {
+    font-size: 0.6rem;
+    text-align: center;
+    line-height: 1.15;
+    margin: 0;  /* Removed bottom margin */
+    padding: 0;
+  }
+  
+  /* ===================================
+     MOBILE: Content Below Card
+     =================================== */
+  
+  /* MOBILE: Content wrapper appears below the card */
+  .content-wrapper {
+    order: 2;
+    width: 100%;
+    max-width: 100vw;
+    margin-top: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 0;
+  }
+  
+  .content-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 0;
+ /* Added left margin for spacing */
+  }
+  
+  /* ===================================
+     MOBILE: Title Section (SOFTWARE DEVELOPER)
+     =================================== */
+  
   .title-container {
-    line-height: 3rem;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1;
     padding-top: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
   }
-
+  
+  .Title {
+    font-size: 15vw;
+    line-height: 1.1;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
+  
   .title-container p {
-    font-size: 4vw;
+    font-size: 3.5vw;
+    line-height: 1.3;
+    margin: 0.3rem 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
-
+  
+  /* ===================================
+     MOBILE: Description Paragraphs
+     =================================== */
+  
   .p-container {
     width: 100%;
+    max-width: 100%;
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
-
+  
   .p-container p {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0.4rem 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
-
+  
+  /* ===================================
+     MOBILE: Tech Boxes (ReactJS, C++, etc.)
+     =================================== */
+  
   .boxes {
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.4rem;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1rem;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    justify-content: flex-start;
   }
 
   .box {
-    padding: 0.3rem 0.8rem;
+    padding: 0.35rem 0.9rem;
     font-size: 0.7rem;
+    white-space: nowrap;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+  
+  .box-1 { padding-left: 1.2rem; padding-right: 1.2rem; }
+  .box-3 { padding-left: 1rem; padding-right: 1rem; }
+
+  /* ===================================
+     MOBILE: Other Sections
+     =================================== */
+  
+  section {
+    margin-left: 0;
+    padding: 10px;
+    min-height: auto;
+    height: auto;
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+  .main-contain section {
+    margin-left: 0;
+    padding: 20px 10px;
+    overflow-x: hidden;
+    position: static;
+  }
+}
+
+/* ===================================
+   MOBILE: Extra Small Screens (< 480px)
+   =================================== */
+
+@media (max-width: 480px) {
+  .Title {
+    font-size: 12vw;
+  }
+  
+  .title-container p {
+    font-size: 3.8vw;
+  }
+  
+  .p-container p {
+    font-size: 0.85rem;
+  }
+  
+  .boxes {
+    gap: 0.3rem;
+  }
+  
+  .box {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.65rem;
+  }
+  
+  aside {
+    width: 70%;
+    max-width: 220px;
+  }
+  
+  .header-container2 {
+    padding: 0 0.75rem;
   }
 }

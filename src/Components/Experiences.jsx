@@ -17,7 +17,6 @@ export default function Experiences() {
         transition={{ delay: 0.3, duration: 0.8 }}
       >
         <h1 className="experiences-title">Professional Experience</h1>
-        <div className="title-divider" />
       </motion.header>
 
       <div className="experiences-list">

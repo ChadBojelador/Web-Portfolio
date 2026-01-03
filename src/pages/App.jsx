@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { Draggable } from 'gsap/Draggable';
 import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@12.15.0/+esm";
 import emailjs from 'emailjs-com';
 import picture from '../assets/picture.svg';
@@ -20,7 +22,7 @@ import '../Styles/certificates.css';
 import '../Styles/tools.css';
 import '../Styles/contact.css';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, Draggable);
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -37,6 +39,11 @@ const itemVariants = {
 function App() {
   const colorIndex = useRef(0);
   const timeoutRef = useRef(null);
+  const seamlessLoopRef = useRef(null);
+  const scrubRef = useRef(null);
+  const triggerRef = useRef(null);
+  const iterationRef = useRef(0);
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -95,6 +102,15 @@ function App() {
   useEffect(() => {
     document.body.style.cursor = 'none';
 
+    // Create ScrollSmoother
+    const smoother = ScrollSmoother.create({
+      wrapper: '#smooth-wrapper',
+      content: '#smooth-content',
+      smooth: 1,
+      effects: true,
+      smoothTouch: 0.1
+    });
+
     // Certificate card animation
     const certCards = document.querySelectorAll('.cert-card');
     const certObserver = new IntersectionObserver((entries) => {
@@ -140,6 +156,7 @@ function App() {
 
     return () => {
       document.body.style.cursor = 'default';
+      if (smoother) smoother.kill();
       ScrollTrigger.getAll().forEach((st) => st.kill());
       certCards.forEach(card => certObserver.unobserve(card));
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -151,7 +168,9 @@ function App() {
       <CustomCursor />
       <Navigation />
 
-      {/* HOME SECTION */}
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+          {/* HOME SECTION */}}
       <section id="home" className='main-contain'>
         <div className="App">
           <motion.div
@@ -178,7 +197,7 @@ function App() {
                     Chad Bojelador
                   </motion.h1>
                   <motion.p variants={itemVariants}>
-                    A Software Developer as well as a Bachelor of Science in Information Technology.
+                    A Full Stack Developer as well as a Bachelor of Science in Information Technology.
                   </motion.p>
                 </motion.div>
               </aside>
@@ -197,7 +216,7 @@ function App() {
                       animate={{ x: 0 }}
                       transition={{ type: 'spring' }}
                     >
-                      SOFTWARE
+                      FULL STACK
                     </motion.h1>
                     <motion.h1
                       className="Title"
@@ -256,15 +275,36 @@ function App() {
           <div className="floating">{'{ }'}</div>
           <div className="floating">;</div>
           <div className="cert-hero">
-            <h1 className="cert-title">Professional Certifications</h1>
-            <p className="cert-subtitle">
+            <motion.h1 
+              className="cert-title"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Professional Certifications
+            </motion.h1>
+            <motion.p 
+              className="cert-subtitle"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               Showcasing continuous learning and expertise across multiple domains
-            </p>
+            </motion.p>
           </div>
 
           <div className="certs-list">
             {certificates.map((cert, index) => (
-              <div key={cert.id || index} className="cert-item">
+              <motion.div 
+                key={cert.id || index} 
+                className="cert-item"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
                 <div className="cert-item-header">
                   <div className="cert-item-main">
                     <h3 className="cert-name">{cert.title}</h3>
@@ -286,7 +326,7 @@ function App() {
                     <span key={idx} className="cert-tag">{tag}</span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -298,13 +338,19 @@ function App() {
 
       {/* PROJECTS SECTION */}
       <section id="projects" className="project-container">
-        {/* NEW SECTION AT TOP OF PROJECTS */}
+        {/* PROJECT SHOWCASE IN NEW SECTION */}
         <div style={{ minHeight: '100vh', padding: '5rem 0', backgroundColor: 'rgb(21, 19, 18)' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h1 style={{ fontSize: '4rem', color: 'white', marginBottom: '2rem', textAlign: 'center' }}>New Section</h1>
-            <p style={{ fontSize: '1.2rem', color: '#999', lineHeight: '1.8', textAlign: 'center' }}>
-              Add your content here...
-            </p>
+            <h1 className="header">PROJECT SHOWCASE</h1>
+            {projects.map((project, index) => (
+              <ProjectPanel 
+                key={index}
+                title={project.title}
+                details={project.details}
+                videoSrc={project.videoSrc}
+                link={project.link}
+              />
+            ))}
           </div>
         </div>
 
@@ -330,19 +376,6 @@ function App() {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="app-container" style={{ height: '250vh', backgroundColor: 'black' }}>
-          <h1 className="header">PROJECT SHOWCASE</h1>
-          {projects.map((project, index) => (
-            <ProjectPanel 
-              key={index}
-              title={project.title}
-              details={project.details}
-              videoSrc={project.videoSrc}
-              link={project.link}
-            />
-          ))}
         </div>
       </section>
 
@@ -460,6 +493,8 @@ function App() {
           </div>
         </div>
       </section>
+        </div>
+      </div>
     </>
   );
 }

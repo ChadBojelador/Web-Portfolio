@@ -5,6 +5,9 @@
   background: var(--bg-primary);
   min-height: 100vh;
   gap: 0;
+  padding-top: 5rem;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .cert-container {
@@ -17,6 +20,8 @@
   padding-left: 10vw;
   padding-right: 2rem;
   position: relative;
+  border-right: none;
+  box-sizing: border-box;
 }
 
 .exp-container {
@@ -24,6 +29,9 @@
   padding: 2rem;
   padding-right: 10vw;
   padding-left: 2rem;
+  border-left: none;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Floating elements */
@@ -62,6 +70,12 @@
 }
 
 /* Hero section */
+.cert-hero {
+  text-align: left;
+  margin: 3rem 0 1rem;
+  padding-top: 2rem;
+}
+
 .hero {
   text-align: center;
   margin: 3rem 0 5rem;
@@ -95,10 +109,11 @@
 
 .cert-item {
   background: var(--bg-card);
-  border-left: 3px solid var(--border-color);
+  border-left: 3px solid var(--border-color) !important;
   padding: 1rem 1.2rem;
   transition: all 0.3s ease;
   position: relative;
+  box-sizing: border-box;
 }
 
 .cert-item:hover {
@@ -196,36 +211,100 @@
 }
 
 /* Responsive design */
+@media (max-width: 1024px) {
+  .cert-exp-wrapper {
+    flex-direction: column;
+    padding-top: 3rem;
+    min-height: auto;
+  }
+  
+  .cert-container,
+  .exp-container {
+    width: 100%;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    min-height: auto;
+  }
+  
+  .cert-hero {
+    padding-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .floating {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .certs-list {
     gap: 0.8rem;
   }
   
+  .cert-hero h1,
   .hero h1 {
-    font-size: 2.8rem;
+    font-size: 2rem;
+  }
+  
+  .cert-hero p,
+  .hero p {
+    font-size: 0.9rem;
   }
   
   .hero {
-    margin: 2rem 0 3rem;
+    margin: 2rem 0 2rem;
   }
   
   .cert-item-header {
     flex-direction: column;
     gap: 0.5rem;
   }
+  
+  .cert-container,
+  .exp-container {
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+  
+  .cert-exp-wrapper {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    overflow-x: hidden;
+  }
+  
+  .certs-list,
+  .experiences-list {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .cert-item {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
 }
 
 @media (max-width: 480px) {
-  .cert-container {
-    padding: 1.5rem;
+  .cert-container,
+  .exp-container {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
   }
   
+  .cert-hero h1,
   .hero h1 {
-    font-size: 2.3rem;
+    font-size: 1.8rem;
   }
   
+  .cert-hero p,
   .hero p {
-    font-size: 1.05rem;
+    font-size: 0.85rem;
   }
   
   .cert-name {
@@ -234,5 +313,14 @@
   
   .cert-item {
     padding: 0.8rem 1rem;
+  }
+  
+  .cert-exp-wrapper {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .cert-hero {
+    margin-bottom: 1.5rem;
   }
 }
