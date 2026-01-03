@@ -262,30 +262,30 @@ function App() {
             </p>
           </div>
 
-          <div className="certs-grid">
-            {certificates.map((cert) => (
-              <div key={cert.id} className="cert-card">
-                <div className="cert-header">
-                  <h3 className="cert-name">{cert.title}</h3>
-                  <span className="cert-issuer">{cert.issuer}</span>
-                </div>
-                <div className="cert-body">
-                  <p className="cert-date">{cert.date}</p>
-                  <p className="cert-description">{cert.description}</p>
-                  <div className="cert-tags">
-                    {cert.tags.map((tag, idx) => (
-                      <span key={idx} className="cert-tag">{tag}</span>
-                    ))}
+          <div className="certs-list">
+            {certificates.map((cert, index) => (
+              <div key={cert.id || index} className="cert-item">
+                <div className="cert-item-header">
+                  <div className="cert-item-main">
+                    <h3 className="cert-name">{cert.title}</h3>
+                    <span className="cert-issuer">{cert.issuer}</span>
+                    <span className="cert-date">{cert.date}</span>
                   </div>
+                  <a 
+                    href={cert.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="cert-link"
+                  >
+                    View →
+                  </a>
                 </div>
-                <a 
-                  href={cert.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="cert-link"
-                >
-                  View Certificate →
-                </a>
+                <p className="cert-description">{cert.description}</p>
+                <div className="cert-tags">
+                  {cert.tags.map((tag, idx) => (
+                    <span key={idx} className="cert-tag">{tag}</span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
