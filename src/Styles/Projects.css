@@ -1,0 +1,490 @@
+/* Projects.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+  --gray-500: #737373;
+  --gray-800: #292929;
+  --gray-25: #fcfcfc;
+  --green: #61ffc9;
+  --white: white;
+  --gray-100: whitesmoke;
+}
+
+/* New Intro Section Styles */
+.intro-wrapper {
+  position: relative;
+  min-height: 90vh;
+  background-color: #f8f8f8;
+}
+.text-part.left {
+  transform: translateX(-200%);
+  opacity: 0;
+}
+.text-part.left.animate-left {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 1s ease-out, opacity 1s ease-out;
+}
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+   z-index: 1;
+}
+
+.text-align-center {
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  padding: 20px;
+}
+
+.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-width-small {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.margin-small {
+  margin: 3.5rem;
+  margin-bottom: 0;
+}
+
+.heading-style-h3 {
+  letter-spacing: -.02em;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
+  font-family: 'Poppins';
+}
+
+.hero-content p {
+  color: var(--gray-500);
+  margin-bottom: 5rem;
+}
+
+.text-size-medium {
+  font-size: 1.125rem;
+  font-family: 'Poppins';
+}
+.des{
+  display: flex;
+  padding-top: 2em;
+}
+
+/* Tabs Section Styles */
+.padding-section-large {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  position: relative;
+}
+
+.tabs_height {
+  height: 100vh;
+}
+
+.tabs_sticky-wrapper {
+  height: 100vh;
+  position: sticky;
+}
+
+/* Hero Section */
+.sign {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  animation: bg 5s linear infinite;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  color: #fff;
+  font-family: 'Poppins';
+}
+
+.hero-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content p {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.dropping-texts {
+  display: inline-block;
+  width: 180px;
+  text-align: center;
+  height: 50px;
+  position: relative;
+}
+.dropping-texts > div {
+  font-size: 5rem;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  font-weight: 800;
+  margin-top: 0;
+  padding-top: 0;
+  left: 0;
+}
+
+.dropping-texts > div:nth-child(1) {
+  animation: roll 5s linear infinite 0s;
+}
+.dropping-texts > div:nth-child(2) {
+  animation: roll 5s linear infinite 1s;
+}
+.dropping-texts > div:nth-child(3) {
+  animation: roll 5s linear infinite 2s;
+}
+.dropping-texts > div:nth-child(4) {
+  animation: roll2 5s linear infinite 3s;
+}
+
+@keyframes roll {
+  0% {
+    font-size: 10rem;
+    opacity: 0;
+    top: 0;
+    transform: rotate(-25deg);
+  }
+  3% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  5% {
+    font-size: inherit;
+    opacity: 1;
+    top: 0;
+  }
+  20% {
+    font-size: inherit;
+    opacity: 1;
+    top: 0;
+  }
+  27% {
+    font-size: 0;
+    opacity: 0.5;
+    top: 100px;
+  }
+  100% {
+    font-size: 0;
+    opacity: 0;
+    top: 0;
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes roll2 {
+  0% {
+    font-size: 10;
+    opacity: 0;
+    top: 0;
+    transform: rotate(-25deg);
+  }
+  3% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  5% {
+    font-size: inherit;
+    opacity: 1;
+    top: 0;
+  }
+  30% {
+    font-size: inherit;
+    opacity: 1;
+    top: 0;
+  }
+  37% {
+    font-size: 1500px;
+    opacity: 0;
+    top: -100px;
+  }
+  100% {
+    font-size: 0;
+    opacity: 0;
+    top: 0;
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes bg {
+  0% { background: #121212; }
+  20% { background: 	#121212; }
+  60% { background: #121212; }
+  80% { background: #121212; }
+  100% { background: #121212; }
+}
+
+/* PROJECT / PROFILE Section */
+.ct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #121212;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+.split-text-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    overflow: hidden;
+    gap: 10px;
+}
+
+.text-part {
+    display: inline-block;
+    position: relative;
+    transform: translateX(0);
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.text-part.left {
+    transform: translateX(-200%);
+    animation-name: slide-in-left;
+}
+
+.text-part.right {
+    transform: translateX(200%);
+    animation-name: slide-in-right;
+}
+
+@keyframes slide-in-left {
+    0% {
+        transform: translateX(-200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+  .hero-content {
+    padding-top: 15vh;
+  }
+  
+  .hero-content p {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+  }
+  
+  .dropping-texts {
+    height: 45px;
+    margin-top: 20px;
+  }
+  
+  .dropping-texts > div {
+    font-size: 3.5rem;
+  }
+  
+  .split-text-container {
+    font-size: 4rem;
+  }
+  
+  .text-align-center {
+    max-width: 95%;
+  }
+  
+  .heading-style-h3 {
+    font-size: 1.8rem;
+  }
+  
+  .text-size-medium {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content p {
+    font-size: 2rem;
+  }
+  
+  .dropping-texts > div {
+    font-size: 3rem;
+  }
+  
+  .split-text-container {
+    font-size: 3.5rem;
+    gap: 5px;
+  }
+  
+  .text-align-center {
+    padding: 15px;
+  }
+  
+  .heading-style-h3 {
+    font-size: 1.6rem;
+  }
+  
+  /* Modified animation for mobile */
+  @keyframes roll {
+    0% {
+      font-size: 0;
+      opacity: 0;
+      top: 0;
+      transform: rotate(-15deg);
+    }
+    3% {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+    5% {
+      font-size: inherit;
+      opacity: 1;
+      top: 0;
+    }
+    20% {
+      font-size: inherit;
+      opacity: 1;
+      top: 0;
+    }
+    27% {
+      font-size: 0;
+      opacity: 0.5;
+      top: 70px;
+    }
+    100% {
+      font-size: 0;
+      opacity: 0;
+      top: 0;
+      transform: rotate(10deg);
+    }
+  }
+
+  @keyframes roll2 {
+    0% {
+      font-size: 0;
+      opacity: 0;
+      top: 0;
+      transform: rotate(-15deg);
+    }
+    3% {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+    5% {
+      font-size: inherit;
+      opacity: 1;
+      top: 0;
+    }
+    30% {
+      font-size: inherit;
+      opacity: 1;
+      top: 0;
+    }
+    37% {
+      font-size: 1500px;
+      opacity: 0;
+      top: -70px;
+    }
+    100% {
+      font-size: 0;
+      opacity: 0;
+      top: 0;
+      transform: rotate(10deg);
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content p {
+    font-size: 1.8rem;
+  }
+  
+  .dropping-texts {
+    width: 150px;
+    height: 40px;
+  }
+  
+  .dropping-texts > div {
+    font-size: 2.5rem;
+  }
+  
+  .split-text-container {
+    font-size: 2.5rem;
+  }
+  
+  .heading-style-h3 {
+    font-size: 1.4rem;
+  }
+  
+  .text-size-medium {
+    font-size: 0.9rem;
+  }
+  
+  .intro-wrapper {
+    min-height: 70vh;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-content p {
+    font-size: 1.6rem;
+  }
+  
+  .dropping-texts > div {
+    font-size: 2rem;
+  }
+  
+  .split-text-container {
+    font-size: 2rem;
+  }
+  
+  /* Further adjust animation for small screens */
+  @keyframes roll {
+    27% {
+      top: 50px;
+    }
+  }
+  
+  @keyframes roll2 {
+    37% {
+      top: -50px;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+// Projects.jsx
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ProjectPanel from '../Components/ProjectPanel';
+import CustomCursor from '../Components/CustomCursor';
+import Navigation from '../Components/Navigation';
+import '../Styles/Projects.css';
+import { projects } from '../data/projects';
+
+gsap.registerPlugin(ScrollTrigger);
+
+function Projects() {
+  const introTextRef = useRef(null);
+
+  useEffect(() => {
+    ScrollTrigger.create({
+      trigger: '.intro-wrapper',
+      start: 'top top',
+      end: 'bottom top',
+      pin: '.text-align-center',
+      pinSpacing: false,
+    });
+    return () => ScrollTrigger.getAll().forEach(st => st.kill());
+  }, []);
+
+  return (
+    <div className="project-container">
+      <div className="nav">
+        <Navigation />
+        <CustomCursor />
+      </div>
+
+      {/* Intro Section */}
+      <div className="intro-wrapper">
+        <div className="intro" >
+          <div className="text-align-center" id="js-pin" ref={introTextRef}>
+            <div className="max-width-small align-center">
+              <div className="margin-bottom margin-small">
+                <h2 className="heading-style-h3">
+                  <span className="light-green-underline">
+                    INNOVATIVE SOLUTIONS AND MEASURABLE IMPACT
+                  </span>
+                </h2>
+              </div>
+              <div className="des">
+                <p className="text-size-medium">
+                  I build scalable and user-centered applications designed to solve real-world problems.
+                  My projects span various domains, from system management tools to productivity and data-driven applications.
+                  I focus on delivering clean, efficient, and maintainable solutions that prioritize functionality and user experience.
+                  Every project is an opportunity to innovate, learn, and create meaningful impact through technology.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Placeholder space (could be replaced with actual content or tabs section) */}
+      <div className="app-container">
+
+            <h1 className="header">PROJECT SHOWCASE</h1>
+            
+            {projects.map((project, index) => (
+                <ProjectPanel 
+                    key={index}
+                    title={project.title}
+                    details={project.details}
+                         videoSrc={project.videoSrc}
+                           link={project.link}
+                />
+            ))}
+ 
+
+        </div>
+    </div>
+  );
+}
+
+export default Projects;

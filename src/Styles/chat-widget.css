@@ -1,0 +1,225 @@
+.portfolio-chat-fab {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(21, 19, 18, 0.92);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.portfolio-chat-fab:hover {
+  transform: translateY(-2px);
+  background: rgba(35, 32, 30, 0.96);
+}
+
+.portfolio-chat-fab:focus-visible {
+  outline: 2px solid #71c4ff;
+  outline-offset: 2px;
+}
+
+.portfolio-chat-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(100%, 400px);
+  max-width: 100vw;
+  z-index: 10002;
+  display: flex;
+  flex-direction: column;
+  background: rgb(21, 19, 18);
+  color: #f3f3f3;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+  font-family: 'Poppins', sans-serif;
+  animation: portfolio-chat-slide-in 0.22s ease-out;
+}
+
+@keyframes portfolio-chat-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0.96;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.portfolio-chat-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(0, 0, 0, 0.45);
+  animation: portfolio-chat-fade-in 0.2s ease;
+}
+
+@keyframes portfolio-chat-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.portfolio-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-chat-header h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.portfolio-chat-close {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  padding: 0.35rem;
+  line-height: 1;
+  border-radius: 6px;
+}
+
+.portfolio-chat-close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.portfolio-chat-disclaimer {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
+  line-height: 1.35;
+  color: #99908f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.portfolio-chat-status {
+  margin: 0;
+  padding: 0.45rem 1rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.portfolio-chat-status--checking {
+  color: #d2d2d2;
+}
+
+.portfolio-chat-status--online {
+  color: #9ef0b9;
+}
+
+.portfolio-chat-status--offline {
+  color: #ffb4b4;
+}
+
+.portfolio-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.portfolio-chat-msg {
+  max-width: 92%;
+  padding: 0.6rem 0.85rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.portfolio-chat-msg--user {
+  align-self: flex-end;
+  background: rgba(113, 196, 255, 0.18);
+  border: 1px solid rgba(113, 196, 255, 0.25);
+}
+
+.portfolio-chat-msg--assistant {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-chat-msg--error {
+  align-self: flex-start;
+  background: rgba(180, 60, 60, 0.2);
+  border: 1px solid rgba(255, 100, 100, 0.25);
+  color: #ffb4b4;
+}
+
+.portfolio-chat-form {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-chat-input {
+  flex: 1;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  padding: 0.55rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+.portfolio-chat-input:focus {
+  outline: none;
+  border-color: rgba(113, 196, 255, 0.45);
+}
+
+.portfolio-chat-send {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.55rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.portfolio-chat-send:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.portfolio-chat-send:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+@media (max-width: 480px) {
+  .portfolio-chat-fab {
+    right: 0.65rem;
+    bottom: 0.65rem;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}

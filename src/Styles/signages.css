@@ -1,0 +1,40 @@
+.sign-container{
+  display: flex;
+  font-family: 'Poppins';
+  gap: 2rem;
+  margin-top: 8vh;
+}
+.sign1,.sign2, .sign3{
+line-height: 2rem;
+padding-right: 1rem;
+}
+.sign1 h2, .sign2 h2, .sign3 h2{
+  color: #fdfdfd;
+  font-size: 7vw;
+  margin-bottom: 1rem;
+  font-weight: 200;
+}
+.sign1 p, .sign2 p, .sign3 p{
+    overflow-wrap: break-word;
+    color: #8b8786;
+    width: 7rem;
+    line-height: 1rem;
+    font-weight: 100;
+margin-top: 0;
+padding-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .sign-container {
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 4vh;
+  }
+  .sign1 h2, .sign2 h2, .sign3 h2 {
+    font-size: 10vw;
+  }
+  .sign1 p, .sign2 p, .sign3 p {
+    width: auto;
+    font-size: 0.9rem;
+  }
+}
