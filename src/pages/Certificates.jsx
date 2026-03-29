@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import '../Styles/certificates.css';
 import Navigation from '../Components/Navigation';
 import CustomCursor from '../Components/CustomCursor';
 import Experiences from '../Components/Experiences';
+import CertificatePanel from '../Components/CertificatePanel';
 import { certificates } from '../data/certificates';
 
 const Certificates = () => {
@@ -24,60 +25,56 @@ const Certificates = () => {
     return () => observer.disconnect();
   }, []);
 
+  const carouselRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (carouselRef.current) {
+      const scrollAmount = direction === 'left' ? -460 : 460;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="cert-container">
       <div className="floating">;</div>
       <div className="floating">( )</div>
       <div className="floating">[ ]</div>
-      <CustomCursor />
-
-      <section className="hero">
+      <div className="nav">
         <Navigation />
-        <h1>My Certificates</h1>
-        <p>Professional certifications and achievements demonstrating expertise across various technologies</p>
+        <CustomCursor />
+      </div>
+
+      <section className="cert-toolbar" aria-label="Certificate Showcase">
+        <h1 className="cert-title">My Certificates</h1>
+        <div className="cert-meta">
+          <span className="cert-count">
+            {String(certificates.length).padStart(2, '0')} certificates
+          </span>
+        </div>
       </section>
 
-      <div className="cert-grid">
-        {certificates.map((cert, index) => (
-          <article
-            className="cert-card"
-            key={`${cert.title}-${index}`}
-            style={{ '--card-delay': `${index * 0.08}s` }}
-          >
-            <div className="cert-media">
-              <img
-                src={cert.image}
-                alt={`${cert.title} certificate preview`}
-                className="cert-image"
-                loading="lazy"
-              />
-              <span className="cert-media-chip">{cert.issuer}</span>
-            </div>
+      <div className="cert-carousel-wrapper">
+        <button 
+          className="carousel-btn carousel-prev" 
+          onClick={() => scroll('left')} 
+          aria-label="Scroll left"
+        >
+          &#8249;
+        </button>
 
-            <div className="cert-header">
-              <h2>{cert.title}</h2>
-              <div className="cert-date">Issued {cert.date}</div>
-            </div>
+        <div className="cert-grid-showcase" ref={carouselRef}>
+          {certificates.map((cert, index) => (
+            <CertificatePanel key={`${cert.title}-${index}`} cert={cert} index={index} />
+          ))}
+        </div>
 
-            <div className="cert-body">
-              <p className="cert-desc">{cert.description}</p>
-              <div className="cert-tags">
-                {cert.tags.map((tag, tagIndex) => (
-                  <span key={tagIndex} className={`cert-tag box-${(tagIndex % 11) + 1}`}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="cert-footer">
-              <a target="_blank" rel="noopener noreferrer" href={cert.link} className="cert-link">
-                View Certificate -&gt;
-              </a>
-              {cert.id && <span className="cert-id">ID: {cert.id}</span>}
-            </div>
-          </article>
-        ))}
+        <button 
+          className="carousel-btn carousel-next" 
+          onClick={() => scroll('right')} 
+          aria-label="Scroll right"
+        >
+          &#8250;
+        </button>
       </div>
 
       <Experiences />

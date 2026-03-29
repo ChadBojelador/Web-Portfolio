@@ -262,7 +262,6 @@ header {
 }
 
 .playlist-cover {
-  height: 115px;
   border-radius: 0.9rem;
   background:
     radial-gradient(circle at 20% 18%, rgba(80, 255, 156, 0.9) 0%, rgba(80, 255, 156, 0) 36%),
@@ -271,7 +270,7 @@ header {
   margin-bottom: 0.8rem;
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding: 0.75rem;
   overflow: hidden;
   box-shadow:
@@ -307,17 +306,22 @@ header {
   pointer-events: none;
 }
 
+.playlist-cover-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 1;
+}
+
 .playlist-cover-label {
-  position: absolute;
-  top: 0.7rem;
-  right: 0.75rem;
   font-family: 'Poppins', sans-serif;
-  font-size: 1.9rem;
+  font-size: 1.85rem;
+  line-height: 1.05;
   font-weight: 600;
   color: #ffffff;
   letter-spacing: 0.02em;
-  text-align: right;
-  z-index: 1;
+  white-space: nowrap;
 }
 
 .playlist-cover-badge {
@@ -331,7 +335,6 @@ header {
   font-weight: 700;
   color: #111;
   background: #fff;
-  z-index: 1;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.24);
 }
 
@@ -435,8 +438,21 @@ header {
   transform: none;
 }
 
-.spotify-drag-handle {
-  margin: 0 0 0.45rem auto;
+.spotify-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 0.45rem;
+  pointer-events: none;
+}
+
+.spotify-controls-row > * {
+  pointer-events: auto;
+}
+
+.spotify-controls-row .spotify-drag-handle {
+  margin: 0;
   padding: 0.28rem 0.7rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -449,7 +465,33 @@ header {
   cursor: grab;
   touch-action: none;
   user-select: none;
-  pointer-events: auto;
+}
+
+.spotify-minimize-btn {
+  margin: 0;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(20, 20, 20, 0.85);
+  color: rgba(255, 255, 255, 0.95);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+.spotify-minimize-btn:hover,
+.spotify-controls-row .spotify-drag-handle:hover {
+  background: rgba(40, 40, 40, 0.85);
+}
+
+.spotify-hidden-container {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .spotify-drag-handle.is-dragging {
@@ -457,9 +499,22 @@ header {
 }
 
 .spotify-persistent--home {
-  left: max(2.5vw, calc((100vw - 1200px) / 2));
-  top: calc(clamp(6.5rem, 11vh, 8.25rem) + min(58vh, 560px) + 8.75rem);
+  /* left-column starts at the same x as .header-container (centered, max 1200px) */
+  left: max(2.5vw, calc((100vw - min(1200px, 95vw)) / 2));
+  /*
+   * top = aside sticky-top + aside padding-top (4vh)
+   *      + photo max-height (min(58vh,560px))
+   *      + description + aside padding-bottom (~6rem)
+   *      + small gap (1rem)
+   */
+  top: calc(
+    clamp(6.5rem, 11vh, 8.25rem)
+    + 4vh
+    + min(58vh, 560px)
+    + 7rem
+  );
   width: min(380px, 95vw);
+  transform: none;
 }
 
 .spotify-persistent--floating {
@@ -772,9 +827,11 @@ aside * {
   }
 
   .spotify-persistent--home {
+    /* on mobile the aside is static; card sits below it in the left-column flow */
     left: 50%;
     right: auto;
-    top: clamp(15.5rem, 43vh, 19.5rem);
+    /* top = nav (~4.5rem) + aside padding-top (2vh) + photo height (~280px≈17.5rem) + description + padding-bottom */
+    top: calc(4.5rem + 2vh + min(45vw, 280px) + 7rem);
     bottom: auto;
     transform: translateX(-50%);
     width: min(94vw, 360px);

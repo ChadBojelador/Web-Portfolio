@@ -14,7 +14,7 @@ export const MotionCarouselDemo = () => {
   const OPTIONS = { loop: true };
 
   return (
-    <div className="project-showcase-section">
+    <div id="carousel-section" className="project-showcase-section">
       <h2 className="project-showcase-title text-3xl font-bold text-white text-center font-['Poppins'] tracking-wider">What I've Accomplished</h2>
       <MotionCarousel items={accomplishments} options={OPTIONS} />
     </div>

@@ -6,6 +6,7 @@ import AppShell from './Components/AppShell.jsx';
 import App from './pages/App.jsx';
 import PortfolioChat from './Components/PortfolioChat.jsx';
 import StartupLoaderGate from './Components/StartupLoaderGate.jsx';
+import ErrorBoundary, { RouteErrorFallback } from './Components/ErrorBoundary.jsx';
 
 // Lazy-load all pages for code-splitting (faster initial load)
 const Projects = lazy(() => import('./pages/Projects.jsx'));
@@ -16,6 +17,7 @@ const Tools = lazy(() => import('./pages/Tools.jsx'));
 const router = createBrowserRouter([
   {
     element: <AppShell />,
+    errorElement: <RouteErrorFallback />,
     children: [
       { path: '/', element: <App /> },
       { path: '/projects', element: <Suspense fallback={null}><Projects /></Suspense> },
@@ -28,11 +30,13 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <StartupLoaderGate>
-      <>
-        <RouterProvider router={router} />
-        <PortfolioChat />
-      </>
-    </StartupLoaderGate>
+    <ErrorBoundary>
+      <StartupLoaderGate>
+        <>
+          <RouterProvider router={router} />
+          <PortfolioChat />
+        </>
+      </StartupLoaderGate>
+    </ErrorBoundary>
   </StrictMode>
 );

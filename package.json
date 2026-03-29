@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:api": "nodemon --watch api --watch scripts --watch src/data --ext js,mjs,json --exec node scripts/chat-api-dev.mjs",
+    "dev:api": "nodemon --watch api --watch scripts --ext js,mjs,json --exec node scripts/chat-api-dev.mjs",
     "dev:api:once": "node scripts/chat-api-dev.mjs",
     "build": "vite build",
     "lint": "eslint .",

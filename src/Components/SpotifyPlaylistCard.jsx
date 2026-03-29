@@ -42,9 +42,11 @@ function SpotifyPlaylistCard({ compact = false }) {
   return (
     <div className={`playlist-card${compact ? ' playlist-card--compact' : ''}`} aria-label="Playlist card">
       <div className="playlist-cover">
-        <p className="playlist-cover-label">I'm Listening to</p>
-        <div className="playlist-cover-badge" aria-hidden="true">
-          <FaSpotify />
+        <div className="playlist-cover-header">
+          <div className="playlist-cover-badge" aria-hidden="true">
+            <FaSpotify />
+          </div>
+          <p className="playlist-cover-label">I'm Listening to</p>
         </div>
       </div>
 
