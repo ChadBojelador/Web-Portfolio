@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 import '../Styles/certificates.css';
 import Navigation from '../Components/Navigation';
 import CustomCursor from '../Components/CustomCursor';
@@ -22,17 +23,29 @@ const Certificates = () => {
       observer.observe(card);
     });
 
-    return () => observer.disconnect();
   }, []);
 
-  const carouselRef = useRef(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: false, 
+    align: 'start', 
+    containScroll: 'trimSnaps' 
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const scroll = (direction) => {
-    if (carouselRef.current) {
-      const scrollAmount = direction === 'left' ? -460 : 460;
-      carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+  }, [emblaApi, onSelect]);
+
+  const scrollTo = useCallback((index) => {
+    if (emblaApi) emblaApi.scrollTo(index);
+  }, [emblaApi]);
 
   return (
     <div className="cert-container">
@@ -53,28 +66,35 @@ const Certificates = () => {
         </div>
       </section>
 
-      <div className="cert-carousel-wrapper">
-        <button 
-          className="carousel-btn carousel-prev" 
-          onClick={() => scroll('left')} 
-          aria-label="Scroll left"
-        >
-          &#8249;
-        </button>
-
-        <div className="cert-grid-showcase" ref={carouselRef}>
-          {certificates.map((cert, index) => (
-            <CertificatePanel key={`${cert.title}-${index}`} cert={cert} index={index} />
-          ))}
+      <div className="w-full max-w-[1300px] mx-auto overflow-hidden py-4 cursor-grab active:cursor-grabbing pb-8">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex gap-4 sm:gap-6">
+            {certificates.map((cert, index) => (
+              <div 
+                key={`${cert.title}-${index}`} 
+                className={`transition-all duration-500 min-w-0 flex-[0_0_88%] sm:flex-[0_0_calc(50%_-_12px)] lg:flex-[0_0_calc(33.3333%_-_16px)] ${selectedIndex === index ? "scale-100 opacity-100" : "scale-[0.96] opacity-60"}`}
+              >
+                <CertificatePanel cert={cert} index={index} />
+              </div>
+            ))}
+          </div>
         </div>
 
-        <button 
-          className="carousel-btn carousel-next" 
-          onClick={() => scroll('right')} 
-          aria-label="Scroll right"
-        >
-          &#8250;
-        </button>
+        {/* Pagination Indicators like Home Page */}
+        <div className="flex justify-center mt-10 gap-2 sm:gap-3">
+          {certificates.map((_, idx) => (
+            <button
+              key={idx}
+              className={`w-2 h-2 rounded-full transition-all duration-500 ${
+                selectedIndex === idx 
+                  ? "bg-white w-8" 
+                  : "bg-white/20 hover:bg-white/40"
+              }`}
+              onClick={() => scrollTo(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
       <Experiences />
