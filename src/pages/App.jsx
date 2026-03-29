@@ -8,7 +8,7 @@ import Navigation from '../Components/Navigation';
 import Signages from '../Components/Signages';
 import { accomplishments } from '../data/accomplishments';
 import '../Styles/index.css';
-import { MotionCarousel } from '@/components/animate-ui/components/community/motion-carousel';
+import { MotionCarousel } from '@/Components/animate-ui/components/community/motion-carousel';
 
 export const MotionCarouselDemo = () => {
   const OPTIONS = { loop: true };
