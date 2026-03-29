@@ -1,28 +1,26 @@
-// Projects.jsx
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectPanel from '../Components/ProjectPanel';
+import BorderGlow from '../Components/BorderGlow';
 import CustomCursor from '../Components/CustomCursor';
 import Navigation from '../Components/Navigation';
 import '../Styles/Projects.css';
 import { projects } from '../data/projects';
 
-gsap.registerPlugin(ScrollTrigger);
+const glowStyle = {
+  edgeSensitivity: 30,
+  glowColor: '0 0 100',
+  backgroundColor: '#121212',
+  borderRadius: 28,
+  glowRadius: 40,
+  glowIntensity: 0.9,
+  coneSpread: 25,
+  animated: false,
+  colors: ['#ffffff', '#d6d6d6', '#8a8a8a'],
+  fillOpacity: 0,
+};
 
 function Projects() {
-  const introTextRef = useRef(null);
-
-  useEffect(() => {
-    ScrollTrigger.create({
-      trigger: '.intro-wrapper',
-      start: 'top top',
-      end: 'bottom top',
-      pin: '.text-align-center',
-      pinSpacing: false,
-    });
-    return () => ScrollTrigger.getAll().forEach(st => st.kill());
-  }, []);
+  const hasProjects = projects.length > 0;
+  const projectCount = String(projects.length).padStart(2, '0');
 
   return (
     <div className="project-container">
@@ -31,48 +29,38 @@ function Projects() {
         <CustomCursor />
       </div>
 
-      {/* Intro Section */}
-      <div className="intro-wrapper">
-        <div className="intro" >
-          <div className="text-align-center" id="js-pin" ref={introTextRef}>
-            <div className="max-width-small align-center">
-              <div className="margin-bottom margin-small">
-                <h2 className="heading-style-h3">
-                  <span className="light-green-underline">
-                    INNOVATIVE SOLUTIONS AND MEASURABLE IMPACT
-                  </span>
-                </h2>
-              </div>
-              <div className="des">
-                <p className="text-size-medium">
-                  I build scalable and user-centered applications designed to solve real-world problems.
-                  My projects span various domains, from system management tools to productivity and data-driven applications.
-                  I focus on delivering clean, efficient, and maintainable solutions that prioritize functionality and user experience.
-                  Every project is an opportunity to innovate, learn, and create meaningful impact through technology.
-                </p>
-              </div>
-            </div>
+      <main className="projects-main">
+        <section className="projects-toolbar" aria-label="Project Showcase">
+          <h1 className="projects-title">Project Showcase</h1>
+          <div className="projects-meta">
+            <span className="projects-count">{projectCount} projects</span>
           </div>
-        </div>
-      </div>
+        </section>
 
-      {/* Placeholder space (could be replaced with actual content or tabs section) */}
-      <div className="app-container">
-
-            <h1 className="header">PROJECT SHOWCASE</h1>
-            
-            {projects.map((project, index) => (
-                <ProjectPanel 
-                    key={index}
-                    title={project.title}
-                    details={project.details}
-                         videoSrc={project.videoSrc}
-                           link={project.link}
-                />
-            ))}
- 
-
-        </div>
+        <section className="projects-grid" aria-live="polite">
+          {hasProjects ? (
+            projects.map((project, index) => (
+              <ProjectPanel
+                key={index}
+                title={project.title}
+                details={project.details}
+                picture={project.picture}
+                videoSrc={project.videoSrc}
+                link={project.link}
+                mediaType={project.mediaType}
+                tags={project.tags}
+                projectIndex={index}
+              />
+            ))
+          ) : (
+            <BorderGlow {...glowStyle} className="projects-empty-glow">
+              <div className="projects-empty-state">
+                <h2>No Projects Yet</h2>
+              </div>
+            </BorderGlow>
+          )}
+        </section>
+      </main>
     </div>
   );
 }

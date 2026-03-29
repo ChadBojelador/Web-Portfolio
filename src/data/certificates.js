@@ -1,3 +1,10 @@
+import awsCloudSupportImage from '../assets/certificates/aws-cloud-support.svg';
+import ibmReactImage from '../assets/certificates/ibm-react.svg';
+import ibmNodeExpressImage from '../assets/certificates/ibm-node-express.svg';
+import dictCanvaImage from '../assets/certificates/dict-canva.svg';
+import datasenseAnalystImage from '../assets/certificates/datasense-analyst.svg';
+import bsuPowerBiImage from '../assets/certificates/bsu-power-bi.svg';
+
 export const certificates = [
   {
     title: "Cloud Support Associate Professional Certificate",
@@ -6,7 +13,8 @@ export const certificates = [
     description: "The Cloud Support Associate Professional Certificate is a credential that validates foundational skills in cloud computing and technical support for cloud-based services.",
     tags: ["AWS", "Lambda", "EC2", "Cloud Computing"],
     link: "https://coursera.org/share/fd015331f34ec11cab574fe2bd568a02",
-    id: "VUKTCP8KRWZK"
+    id: "VUKTCP8KRWZK",
+    image: awsCloudSupportImage
   },
   {
     title: "Developing Front-End Apps with React",
@@ -15,7 +23,8 @@ export const certificates = [
     description: "Professional certification demonstrating proficiency in building dynamic front-end web applications using React, including components, state management, hooks, and Redux.",
     tags: ["React", "Redux", "JavaScript", "Hooks", "IBM"],
     link: "https://www.coursera.org/account/accomplishments/records/DWTAT3K7YJ8E",
-    id: "DWTAT3K7YJ8E"
+    id: "DWTAT3K7YJ8E",
+    image: ibmReactImage
   },
   {
     title: "Developing Back-End Apps with Node.js and Express",
@@ -24,7 +33,8 @@ export const certificates = [
     description: "Certification covering back-end web development using Node.js and Express, including REST API creation, middleware, authentication, and server-side logic.",
     tags: ["Node.js", "Express", "REST API", "JavaScript", "IBM"],
     link: "https://www.coursera.org/account/accomplishments/records/3WEPSCSJ3FFM",
-    id: "3WEPSCSJ3FFM"
+    id: "3WEPSCSJ3FFM",
+    image: ibmNodeExpressImage
   },
   {
     title: "Graphic Design with AI Powered Canva for Beginners",
@@ -33,7 +43,8 @@ export const certificates = [
     description: "Hands-on training in graphic design fundamentals using Canva's AI-powered tools, covering layout design, visual storytelling, and creating professional digital materials.",
     tags: ["Canva", "Graphic Design", "AI Tools", "DICT"],
     link: "https://drive.google.com/file/d/1P9iKYYxwQNajj5BNW2kAyOxqan6UojBc/view?usp=drive_link",
-    id: ""
+    id: "",
+    image: dictCanvaImage
   },
   {
     title: "Data Analyst Specialist Open House Mentoring Program",
@@ -42,7 +53,8 @@ export const certificates = [
     description: "An interactive Q&A session connecting aspiring data analysts with industry professionals. Participants gain insights, career guidance, and practical advice to support their growth in the data analytics field.",
     tags: ["Zoom", "Q&A"],
     link: "https://drive.google.com/file/d/19OvZGUKBf7YWaIL9I3OaerSbcWr-ypoi/view?usp=sharing",
-    id: "STF-25-4587428"
+    id: "STF-25-4587428",
+    image: datasenseAnalystImage
   },
   {
     title: "Mastering Programming and Data Analysis:Leveraging LMS Tools and Power BI",
@@ -51,6 +63,7 @@ export const certificates = [
     description: "This mentoring event explores the integration of programming and data analysis through the use of LMS tools and Microsoft Power BI. It highlights how these technologies enhance data-driven decision-making, improve learner engagement, and support efficient monitoring and evaluation in digital education environments.",
     tags: ["Power BI", "Excel", "Google Drive", "Problem Solving"],
     link: "#",
-    id: ""
+    id: "",
+    image: bsuPowerBiImage
   }
 ];

@@ -1,13 +1,34 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
 @import url('https://fonts.cdnfonts.com/css/poppins');
 
+:root {
+  --page-bg: rgb(21, 19, 18);
+  --theme-surface-1: #1f1a18;
+  --theme-surface-2: #2a2320;
+  --theme-accent: #f46c38;
+  --theme-muted: #99908f;
+}
+
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   ;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
-  background-color: rgb(21, 19, 18);
+  background-color: var(--page-bg);
 
 }
 
@@ -76,12 +97,14 @@ header {
 .title-container {
   display: flex;
   flex-direction: column;
-  line-height: 5rem;
-  padding-top: 1em;
+  line-height: clamp(3rem, 7vw, 5rem);
+  padding-top: 0.75rem;
+  align-items: center;
+  text-align: center;
 }
 
 .title-container p {
-  color: #99908f;
+  color: var(--theme-muted);
   font-size: 2vw;
 }
 
@@ -91,7 +114,8 @@ header {
 }
 
 .p-container {
-  width: 35vw;
+  width: min(35vw, 560px);
+  max-width: 100%;
   padding-top: 1.5rem;
 }
 
@@ -106,9 +130,12 @@ header {
 }
 
 .header-container {
-  height: 80vh;
-  width: 95vw;
-  margin-top: 7vh;
+  min-height: 100vh;
+  width: min(1200px, 95vw);
+  margin: 0 auto;
+  padding-top: clamp(6.5rem, 11vh, 8.25rem);
+  display: flex;
+  justify-content: center;
 }
 
 .icon {
@@ -130,24 +157,22 @@ header {
 }
 
 .main-contain section {
-  padding: 20px;
-  margin-top: 1vh;
-  margin-left: 7vw;
+  padding: 0;
+  margin-top: 0;
+  margin-left: 0;
   flex: 1;
   /* Adjust based on your header height */
 
   overflow: visible;
-  position: absolute;
-}
-
-.header-container2 {
+  position: relative;
   display: flex;
-  gap: 2rem;
-  position: absolute;
+  justify-content: center;
 }
 
 .content-wrapper {
   flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .content-sections {
@@ -163,23 +188,284 @@ header {
   color: white;
 }
 
+.left-column {
+  width: min(380px, 95vw);
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
 .main-contain aside {
   position: sticky;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: auto;
-  width: 50vh;
-  max-width: 95vw;
-  margin-left: 10vw;
-  margin-top: 5vh;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-top: 0;
   background-color: #ffffff;
   border-radius: 1em;
   pointer-events: none;
-  top: 0;
+  top: clamp(6.5rem, 11vh, 8.25rem);
   align-self: flex-start;
   padding: 4vh 1rem 2.5rem;
   box-sizing: border-box;
+  box-shadow: 0 20px 55px -35px rgba(0, 0, 0, 0.9);
+}
+
+.playlist-card {
+  width: 100%;
+  margin-top: clamp(3.5rem, 7vh, 6rem);
+  background: linear-gradient(155deg, #1b1b1b 0%, #121212 50%, #0f0f0f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.1rem;
+  padding: 1rem;
+  color: #f4f4f4;
+  box-shadow: 0 20px 45px -35px rgba(0, 0, 0, 0.95);
+  pointer-events: auto;
+}
+
+.playlist-card--compact {
+  margin-top: 0;
+  padding: 0.85rem;
+  border-radius: 1rem;
+}
+
+.playlist-card--compact .playlist-cover {
+  display: none;
+}
+
+.playlist-card--compact .playlist-kicker {
+  font-size: 0.62rem;
+  margin-bottom: 0.1rem;
+}
+
+.playlist-card--compact .playlist-title {
+  font-size: 1.05rem;
+  margin-bottom: 0.2rem;
+}
+
+.playlist-card--compact .playlist-subtitle {
+  font-size: 0.69rem;
+  margin-bottom: 0.55rem;
+}
+
+.playlist-card--compact .playlist-embed-wrap {
+  margin-bottom: 0;
+}
+
+.playlist-card--compact .playlist-embed {
+  height: 86px;
+}
+
+.playlist-cover {
+  height: 115px;
+  border-radius: 0.9rem;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(80, 255, 156, 0.9) 0%, rgba(80, 255, 156, 0) 36%),
+    radial-gradient(circle at 82% 30%, rgba(15, 61, 35, 0.48) 0%, rgba(15, 61, 35, 0) 50%),
+    linear-gradient(145deg, #2cec7a 0%, #1db954 48%, #11813e 100%);
+  margin-bottom: 0.8rem;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -18px 28px rgba(0, 0, 0, 0.22),
+    0 10px 24px rgba(29, 185, 84, 0.3);
+}
+
+.playlist-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(110deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 40%),
+    repeating-linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.08) 0 2px,
+      rgba(255, 255, 255, 0) 2px 14px
+    );
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.playlist-cover::after {
+  content: '';
+  position: absolute;
+  right: -28px;
+  bottom: -34px;
+  width: 118px;
+  height: 118px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 68%);
+  pointer-events: none;
+}
+
+.playlist-cover-label {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.75rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  text-align: right;
+  z-index: 1;
+}
+
+.playlist-cover-badge {
+  height: 34px;
+  min-width: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #111;
+  background: #fff;
+  z-index: 1;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.24);
+}
+
+.playlist-kicker {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9d9d9d;
+  margin-bottom: 0.2rem;
+}
+
+.playlist-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+.playlist-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: #b7b7b7;
+  margin-bottom: 0.8rem;
+}
+
+.playlist-embed-wrap {
+  width: 100%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.playlist-embed {
+  width: 100%;
+  height: 152px;
+  border: 0;
+  display: block;
+}
+
+.playlist-fallback-note {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.73rem;
+  line-height: 1.35;
+  color: #9d9d9d;
+  margin-bottom: 0.9rem;
+}
+
+.playlist-tracks {
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.playlist-track {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.76rem;
+  color: #cfcfcf;
+  padding: 0.34rem 0.42rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.playlist-track-index {
+  color: #8f8f8f;
+  min-width: 1.65rem;
+}
+
+.playlist-track-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlist-track-duration {
+  color: #8f8f8f;
+}
+
+.spotify-persistent {
+  position: fixed;
+  z-index: 28;
+  pointer-events: none;
+}
+
+.spotify-persistent>* {
+  pointer-events: auto;
+}
+
+.spotify-persistent .playlist-card {
+  margin-top: 0;
+}
+
+.spotify-persistent--draggable {
+  transform: none;
+}
+
+.spotify-drag-handle {
+  margin: 0 0 0.45rem auto;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(20, 20, 20, 0.85);
+  color: rgba(255, 255, 255, 0.95);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.spotify-drag-handle.is-dragging {
+  cursor: grabbing;
+}
+
+.spotify-persistent--home {
+  left: max(2.5vw, calc((100vw - 1200px) / 2));
+  top: calc(clamp(6.5rem, 11vh, 8.25rem) + min(58vh, 560px) + 8.75rem);
+  width: min(380px, 95vw);
+}
+
+.spotify-persistent--floating {
+  left: max(0.9rem, calc((100vw - 1120px) / 2));
+  bottom: 1rem;
+  width: min(320px, 92vw);
 }
 
 aside * {
@@ -232,8 +518,34 @@ aside * {
 
 .header-container2 {
   display: flex;
-  gap: 2rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
   position: relative;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.content-container {
+  width: min(760px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.project-showcase-section {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+  display: block;
+  margin-bottom: 2.5rem;
+  padding-top: clamp(4rem, 15vh, 7rem);
+  padding-bottom: 5rem;
+}
+
+.project-showcase-title {
+  margin-bottom: clamp(2rem, 4vh, 3rem);
 }
 
 /* Add this at the end of your CSS file */
@@ -281,6 +593,8 @@ aside * {
 
   max-width: 600px;
   margin-top: 1rem;
+  margin-inline: auto;
+  justify-content: center;
   font-family: 'Poppins';
   font-weight: 500;
   /* Reduced margin */
@@ -376,24 +690,52 @@ aside * {
 @media (max-width: 768px) {
 
 
+  nav {
+    width: min(94vw, 360px);
+    padding: 0.45rem 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .list-container {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.35rem;
+  }
+
+  .list {
+    width: auto;
+    min-width: 2.1rem;
+    padding: 0.35rem;
+  }
+
+  .icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
   .header-container {
     justify-content: center;
     display: flex;
-    /* Allow container to expand */
+    width: 100%;
+    min-height: auto;
+    padding-inline: 0.6rem;
+    padding-top: 6.5rem;
   }
 
   .header-container2 {
     flex-direction: column;
     width: 100%;
-    height: 70vh;
-    margin-top: 2em;
+    height: auto;
+    margin-top: 1.25rem;
+    align-items: center;
   }
 
-  aside {
-    position: sticky;
-    top: 0;
-    width: 90%;
-    height: 50%;
+  .main-contain aside {
+    position: static;
+    top: auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     margin: 0 auto 2vh;
     padding: 15px;
     padding-bottom: 1.50rem;
@@ -403,26 +745,74 @@ aside * {
     background-color: #ffffff;
   }
 
+  .left-column {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .playlist-card {
+    margin-top: 0.75rem;
+    padding: 0.9rem;
+  }
+
+  .playlist-cover {
+    height: 96px;
+  }
+
+  .playlist-title {
+    font-size: 1.2rem;
+  }
+
+  .playlist-subtitle {
+    font-size: 0.74rem;
+  }
+
+  .playlist-embed {
+    height: 132px;
+  }
+
+  .spotify-persistent--home {
+    left: 50%;
+    right: auto;
+    top: clamp(15.5rem, 43vh, 19.5rem);
+    bottom: auto;
+    transform: translateX(-50%);
+    width: min(94vw, 360px);
+  }
+
+  .spotify-persistent--floating {
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: 0.7rem;
+    transform: translateX(-50%);
+    width: min(94vw, 360px);
+  }
+
+  .spotify-persistent--draggable {
+    transform: none;
+  }
+
   .content-wrapper {
     order: 2;
     /* Ensure content comes after */
     width: 100%;
-    margin-top: 0;
+    margin-top: 0.5rem;
   }
 
   section {
     margin-left: 0;
     padding: 10px;
-
-    height: 10vh;
+    height: auto;
 
   }
 
   .picture {
-    width: 50%;
+    width: min(55vw, 190px);
     height: auto;
-    min-height: 38vh;
-    max-width: 220px;
+    min-height: 0;
+    max-height: 280px;
+    max-width: 100%;
     object-fit: cover;
     object-position: center top;
   }
@@ -435,7 +825,7 @@ aside * {
   }
 
   .description-pic h1 {
-    font-size: 6vw;
+    font-size: clamp(1.2rem, 5.5vw, 1.7rem);
   }
 
   .description-pic p {
@@ -444,34 +834,48 @@ aside * {
   }
 
   .Title {
-    font-size: 10vw;
+    font-size: clamp(2rem, 9vw, 2.9rem);
     line-height: 1.2;
-    margin-top: 1vh;
+    margin-top: 0.5rem;
   }
 
   .title-container {
-    line-height: 3rem;
+    line-height: 1.15;
     padding-top: 0;
   }
 
   .title-container p {
-    font-size: 4vw;
+    font-size: clamp(0.95rem, 3.9vw, 1.1rem);
   }
 
   .p-container {
-    width: 100%;
+    width: min(92vw, 520px);
   }
 
   .p-container p {
-    font-size: 1rem;
+    font-size: 0.96rem;
+    line-height: 1.35;
   }
 
   .boxes {
+    max-width: 100%;
     gap: 0.4rem;
   }
 
   .box {
     padding: 0.3rem 0.8rem;
     font-size: 0.7rem;
+    white-space: normal;
+  }
+
+  .project-showcase-section {
+    padding-top: 2.6rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 2.6rem;
+  }
+
+  .project-showcase-title {
+    margin-bottom: 1.15rem;
+    font-size: clamp(1.35rem, 6vw, 1.9rem);
   }
 }

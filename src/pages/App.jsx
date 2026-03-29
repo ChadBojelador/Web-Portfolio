@@ -6,7 +6,21 @@ import CustomCursor from '../Components/CustomCursor';
 import Navigation from '../Components/Navigation';
 
 import Signages from '../Components/Signages';
+import { accomplishments } from '../data/accomplishments';
 import '../Styles/index.css';
+import { MotionCarousel } from '@/components/animate-ui/components/community/motion-carousel';
+
+export const MotionCarouselDemo = () => {
+  const OPTIONS = { loop: true };
+
+  return (
+    <div className="project-showcase-section">
+      <h2 className="project-showcase-title text-3xl font-bold text-white text-center font-['Poppins'] tracking-wider">What I've Accomplished</h2>
+      <MotionCarousel items={accomplishments} options={OPTIONS} />
+    </div>
+  );
+};
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -29,102 +43,106 @@ function App() {
   return (
     <div className="main-contain">
       <div className="App">
-      <CustomCursor />
-      <motion.div
-        className="header-container"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <Navigation />
+        <CustomCursor />
+        <motion.div
+          className="header-container"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <Navigation />
 
-        <div className="header-container2">
-          <aside>
-            <motion.img
-              className="picture"
-              src={profilePhoto}
-              alt="Profile picture of Chad Bojelador"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            />
-            <motion.div className="description-pic" variants={containerVariants}>
-              <motion.h1 className="name" variants={itemVariants}>
-                Chad Bojelador
-              </motion.h1>
-              <motion.p variants={itemVariants}>
-                A Software Developer as well as a Bachelor of Science in Information Technology.
-              </motion.p>
-            </motion.div>
-          </aside>
-
-          <div className="content-wrapper">
-            <section>
-              <div className="content-container">
-            <motion.div
-              className="title-container"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <motion.h1
-                className="Title"
-                variants={itemVariants}
-                initial={{ x: -50 }}
-                animate={{ x: 0 }}
-                transition={{ type: 'spring' }}
-              >
-                SOFTWARE
-              </motion.h1>
-              <motion.h1
-                className="Title"
-                id="title1"
-                variants={itemVariants}
-                initial={{ x: -50 }}
-                animate={{ x: 0 }}
-                transition={{ type: 'spring', delay: 0.1 }}
-              >
-                DEVELOPER
-              </motion.h1>
-              <motion.div className="p-container" variants={containerVariants}>
-                <motion.p variants={itemVariants}>
-                  Focused on building software that drives impact
-                </motion.p>
-                <motion.p variants={itemVariants}>
-                  with intuitive design and seamless functionality.
-                </motion.p>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              className="boxes"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {['ReactJS','C++','Java','Python','Qt','MySQL','NodeJS','HTML','CSS','Javascript','Tailwind'].map((tech, idx) => (
-                <motion.div
-                  key={idx}
-                  className={`box box-${idx+1}`}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <p>{tech}</p>
+          <div className="header-container2">
+            <div className="left-column">
+              <aside>
+                <motion.img
+                  className="picture"
+                  src={profilePhoto}
+                  alt="Profile picture of Chad Bojelador"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                />
+                <motion.div className="description-pic" variants={containerVariants}>
+                  <motion.h1 className="name" variants={itemVariants}>
+                    Chad Bojelador
+                  </motion.h1>
+                  <motion.p variants={itemVariants}>
+                    A Software Developer as well as a Bachelor of Science in Information Technology.
+                  </motion.p>
                 </motion.div>
-              ))}
-            </motion.div>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <Signages />
-            </motion.div>
-              </div>
-            </section>
+              </aside>
+            </div>
+
+            <div className="content-wrapper">
+              <section>
+                <div className="content-container">
+              <motion.div
+                className="title-container"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <motion.h1
+                  className="Title"
+                  variants={itemVariants}
+                  initial={{ x: -50 }}
+                  animate={{ x: 0 }}
+                  transition={{ type: 'spring' }}
+                >
+                  SOFTWARE
+                </motion.h1>
+                <motion.h1
+                  className="Title"
+                  id="title1"
+                  variants={itemVariants}
+                  initial={{ x: -50 }}
+                  animate={{ x: 0 }}
+                  transition={{ type: 'spring', delay: 0.1 }}
+                >
+                  DEVELOPER
+                </motion.h1>
+                <motion.div className="p-container" variants={containerVariants}>
+                  <motion.p variants={itemVariants}>
+                    Focused on building software that drives impact
+                  </motion.p>
+                  <motion.p variants={itemVariants}>
+                    with intuitive design and seamless functionality.
+                  </motion.p>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                className="boxes"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {['ReactJS','C++','Java','Python','Qt','MySQL','NodeJS','HTML','CSS','Javascript','Tailwind'].map((tech, idx) => (
+                  <motion.div
+                    key={idx}
+                    className={`box box-${idx+1}`}
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <p>{tech}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Signages />
+              </motion.div>
+              
+              <MotionCarouselDemo />
+                </div>
+              </section>
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
     </div>
     </div>
   );
