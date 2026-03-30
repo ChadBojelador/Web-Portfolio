@@ -4,7 +4,6 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppShell from './Components/AppShell.jsx';
 import App from './pages/App.jsx';
-import PortfolioChat from './Components/PortfolioChat.jsx';
 import StartupLoaderGate from './Components/StartupLoaderGate.jsx';
 import ErrorBoundary, { RouteErrorFallback } from './Components/ErrorBoundary.jsx';
 
@@ -32,10 +31,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
       <StartupLoaderGate>
-        <>
-          <RouterProvider router={router} />
-          <PortfolioChat />
-        </>
+        <RouterProvider router={router} />
       </StartupLoaderGate>
     </ErrorBoundary>
   </StrictMode>

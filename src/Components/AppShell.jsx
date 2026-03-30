@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import SpotifyPlaylistCard from './SpotifyPlaylistCard';
+import PortfolioChat from './PortfolioChat';
 
 const FLOATING_MARGIN = 12;
 
@@ -215,6 +216,7 @@ function AppShell() {
           <SpotifyPlaylistCard compact={isDraggableRoute} />
         </div>
       </div>
+      <PortfolioChat />
     </>
   );
 }
