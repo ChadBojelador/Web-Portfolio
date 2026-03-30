@@ -2,6 +2,7 @@ import ProjectPanel from '../Components/ProjectPanel';
 import BorderGlow from '../Components/BorderGlow';
 import CustomCursor from '../Components/CustomCursor';
 import Navigation from '../Components/Navigation';
+import { Link } from 'react-router-dom';
 import '../Styles/Projects.css';
 import { projects } from '../data/projects';
 
@@ -19,6 +20,7 @@ const glowStyle = {
 };
 
 function Projects() {
+  const isUnderDevelopment = true;
   const hasProjects = projects.length > 0;
   const projectCount = String(projects.length).padStart(2, '0');
 
@@ -38,7 +40,21 @@ function Projects() {
         </section>
 
         <section className="projects-grid" aria-live="polite">
-          {hasProjects ? (
+          {isUnderDevelopment ? (
+            <BorderGlow {...glowStyle} className="projects-empty-glow">
+              <div className="projects-empty-state projects-dev-state">
+                <h2>Projects Page In Development</h2>
+                <p>
+                  This section is currently being refined. You can explore other parts of my portfolio while this page is being completed.
+                </p>
+                <div className="projects-dev-actions" role="navigation" aria-label="Explore other portfolio sections">
+                  <Link to="/" className="projects-dev-link">Home</Link>
+                  <Link to="/certificates" className="projects-dev-link">Certificates</Link>
+                  <Link to="/about" className="projects-dev-link">About</Link>
+                </div>
+              </div>
+            </BorderGlow>
+          ) : hasProjects ? (
             projects.map((project, index) => (
               <ProjectPanel
                 key={index}

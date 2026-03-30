@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import { motion, useInView } from 'framer-motion';
 import '../Styles/certificates.css';
 import Navigation from '../Components/Navigation';
 import CustomCursor from '../Components/CustomCursor';
@@ -8,6 +9,41 @@ import CertificatePanel from '../Components/CertificatePanel';
 import { certificates } from '../data/certificates';
 
 const Certificates = () => {
+  const techStackGroups = [
+    { title: 'Frontend', items: ['React', 'JavaScript', 'Tailwind CSS', 'Framer Motion'] },
+    { title: 'Backend', items: ['Node.js', 'Express.js', 'REST APIs', 'MySQL'] },
+    { title: 'Languages', items: ['Java', 'Python', 'C++'] },
+    { title: 'AI & Tooling', items: ['Google ADK', 'Claude CLI', 'Cursor', 'OpenClaw', 'Antigravity'] },
+    { title: 'Workflow', items: ['Git', 'GitHub', 'System Design', 'Automation Thinking'] },
+  ];
+
+  const skillsRef = useRef(null);
+  const skillsInView = useInView(skillsRef, { once: true, margin: '-120px' });
+
+  const skillsContainerVariants = {
+    hidden: { opacity: 0, y: 28 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+        when: 'beforeChildren',
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const skillsItemVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.985 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   useEffect(() => {
     const certCards = document.querySelectorAll('.cert-card');
     const observer = new IntersectionObserver(entries => {
@@ -58,17 +94,24 @@ const Certificates = () => {
       </div>
 
       <section className="cert-intro-layout" aria-label="Skills and Professional Journey">
-        <section className="cert-skills-section" aria-label="Skills">
-          <div className="cert-skills-header">
+        <motion.section
+          ref={skillsRef}
+          className="cert-skills-section"
+          aria-label="Skills"
+          variants={skillsContainerVariants}
+          initial="hidden"
+          animate={skillsInView ? 'visible' : 'hidden'}
+        >
+          <motion.div className="cert-skills-header" variants={skillsItemVariants}>
             <p className="cert-skills-eyebrow">Skills</p>
             <h2 className="cert-skills-title">Architecture-led execution with AI at the core</h2>
             <p className="cert-skills-intro">
               I build fast, think in systems, and use AI as a core part of how I create.
             </p>
-          </div>
+          </motion.div>
 
           <div className="cert-skills-grid">
-            <article className="cert-skill-card">
+            <motion.article className="cert-skill-card" variants={skillsItemVariants}>
               <h3 className="cert-skill-card-title">Agentic AI &amp; Tools</h3>
               <p className="cert-skill-card-text">
                 Design and use AI agent workflows for real output, not just prompts.
@@ -77,18 +120,18 @@ const Certificates = () => {
                 Tools: Google ADK, OpenClaw, Claude CLI, Cursor, Antigravity.
               </p>
               <p className="cert-skill-card-text">Multi-model and tool integration mindset.</p>
-            </article>
+            </motion.article>
 
-            <article className="cert-skill-card">
+            <motion.article className="cert-skill-card" variants={skillsItemVariants}>
               <h3 className="cert-skill-card-title">Architecture &amp; Systems Thinking</h3>
               <p className="cert-skill-card-text">Architecture-first before coding.</p>
               <p className="cert-skill-card-text">
                 Build scalable, modular, and automated workflows.
               </p>
               <p className="cert-skill-card-text">Turn ideas into structured systems.</p>
-            </article>
+            </motion.article>
 
-            <article className="cert-skill-card">
+            <motion.article className="cert-skill-card" variants={skillsItemVariants}>
               <h3 className="cert-skill-card-title">Full-Stack Development</h3>
               <p className="cert-skill-card-text">
                 Strong foundation in React for frontend and Node.js for backend.
@@ -96,24 +139,44 @@ const Certificates = () => {
               <p className="cert-skill-card-text">
                 Build and integrate APIs, databases, and UI systems.
               </p>
-            </article>
+            </motion.article>
 
-            <article className="cert-skill-card">
+            <motion.article className="cert-skill-card" variants={skillsItemVariants}>
               <h3 className="cert-skill-card-title">AI-Augmented Workflow</h3>
               <p className="cert-skill-card-text">Use AI to code, debug, and accelerate development.</p>
               <p className="cert-skill-card-text">
                 Focus on speed, efficiency, and output scaling.
               </p>
-            </article>
+            </motion.article>
           </div>
 
-          <aside className="cert-skills-edge" aria-label="My edge">
+          <motion.aside className="cert-skills-edge" aria-label="My edge" variants={skillsItemVariants}>
             <h3 className="cert-skills-edge-title">My Edge</h3>
             <p className="cert-skills-edge-text">
               I do not just build apps. I design systems where AI does the work.
             </p>
-          </aside>
-        </section>
+          </motion.aside>
+
+          <motion.section className="cert-techstack-section" aria-label="Tech Stack" variants={skillsItemVariants}>
+            <div className="cert-techstack-header">
+              <p className="cert-techstack-eyebrow">Tech Stack</p>
+              <h3 className="cert-techstack-title">Technology stack I use across design and development</h3>
+            </div>
+
+            <div className="cert-techstack-groups">
+              {techStackGroups.map((group) => (
+                <article key={group.title} className="cert-techstack-group">
+                  <h4 className="cert-techstack-group-title">{group.title}</h4>
+                  <div className="cert-techstack-chips">
+                    {group.items.map((item) => (
+                      <span key={item} className="cert-techstack-chip">{item}</span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </motion.section>
+        </motion.section>
 
         <Experiences className="cert-experience-panel" />
       </section>

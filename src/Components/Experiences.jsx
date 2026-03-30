@@ -85,7 +85,7 @@ export default function Experiences({ className = '' }) {
   const headerInView = useInView(headerRef, { once: true });
   const [showAll, setShowAll] = useState(false);
 
-  const maxVisible = 4;
+  const maxVisible = 2;
   const hasMoreThanLimit = experiences.length > maxVisible;
   const visibleExperiences = hasMoreThanLimit && !showAll
     ? experiences.slice(0, maxVisible)

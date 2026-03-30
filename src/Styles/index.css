@@ -746,26 +746,27 @@ aside * {
 
 
   nav {
-    width: min(94vw, 360px);
-    padding: 0.45rem 0.75rem;
+    width: fit-content;
+    max-width: calc(100vw - 1rem);
+    padding: 0.38rem 0.5rem;
     margin-top: 0.75rem;
   }
 
   .list-container {
-    width: 100%;
-    justify-content: space-between;
-    gap: 0.35rem;
+    width: auto;
+    justify-content: center;
+    gap: 0.22rem;
   }
 
   .list {
-    width: auto;
-    min-width: 2.1rem;
-    padding: 0.35rem;
+    width: 1.72rem;
+    min-width: 1.72rem;
+    padding: 0.24rem;
   }
 
   .icon {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.08rem;
+    height: 1.08rem;
   }
 
   .header-container {
@@ -788,12 +789,11 @@ aside * {
   .main-contain aside {
     position: static;
     top: auto;
-    width: min(94vw, 360px);
-    max-width: min(94vw, 360px);
+    width: min(80vw, 276px);
+    max-width: min(80vw, 276px);
     height: auto;
     margin: 0 auto 2vh;
-    padding: 15px;
-    padding-bottom: 1.50rem;
+    padding: 14px 12px 1.7rem;
     order: 1;
     z-index: 10;
     /* ← ensures it stays above the section */
@@ -891,7 +891,7 @@ aside * {
   }
 
   .Title {
-    font-size: clamp(2.2rem, 10vw, 3.2rem);
+    font-size: clamp(2.35rem, 10.8vw, 3.35rem);
     line-height: 1.1;
     margin-top: 0.35rem;
   }
@@ -911,6 +911,7 @@ aside * {
 
   .p-container {
     width: min(92vw, 520px);
+    padding-top: 0.55rem;
   }
 
   .p-container p {
@@ -919,14 +920,18 @@ aside * {
   }
 
   .boxes {
+    width: min(92vw, 520px);
     max-width: 100%;
     gap: 0.4rem;
+    row-gap: 0.45rem;
+    justify-content: center;
   }
 
   .box {
     padding: 0.3rem 0.8rem;
     font-size: 0.7rem;
-    white-space: normal;
+    white-space: nowrap;
+    flex: 0 1 auto;
   }
 
   .project-showcase-section {
@@ -943,8 +948,30 @@ aside * {
 
 @media (max-width: 420px) {
   .main-contain aside {
-    width: min(86vw, 330px);
-    max-width: min(86vw, 330px);
+    width: min(74vw, 250px);
+    max-width: min(74vw, 250px);
+  }
+
+  nav {
+    padding: 0.35rem 0.45rem;
+  }
+
+  .list {
+    width: 1.62rem;
+    min-width: 1.62rem;
+    padding: 0.22rem;
+  }
+
+  .boxes {
+    width: min(94vw, 360px);
+  }
+
+  .Title {
+    font-size: clamp(2.2rem, 11.2vw, 3rem);
+  }
+
+  .p-container {
+    padding-top: 0.45rem;
   }
 
   .description-pic p {
