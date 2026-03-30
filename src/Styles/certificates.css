@@ -1,6 +1,6 @@
 /* certificates.css */
 :root {
-  --page-bg: rgb(21, 19, 18);
+  --page-bg: #111111;
   --theme-surface-1: #1f1a18;
   --theme-surface-2: #2a2320;
   --theme-accent: #f46c38;
@@ -26,14 +26,7 @@
 }
 
 .floating {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.05);
-  font-size: clamp(5rem, 14vw, 10rem);
-  z-index: 0;
-  user-select: none;
-  pointer-events: none;
-  font-weight: 700;
-  filter: blur(0.2px);
+  display: none;
 }
 
 .floating:nth-child(1) {
@@ -105,6 +98,107 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgb(235 235 235 / 90%);
+}
+
+/* Skills section */
+.cert-skills-section {
+  position: relative;
+  z-index: 2;
+  width: min(1100px, 100%);
+  margin: 0 auto 2.2rem;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 0% 0%, rgb(255 255 255 / 5%), transparent 42%),
+    linear-gradient(140deg, rgba(20, 20, 20, 0.95) 0%, rgba(16, 16, 16, 0.98) 100%);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.3);
+}
+
+.cert-skills-header {
+  max-width: 760px;
+  margin-bottom: 1rem;
+}
+
+.cert-skills-eyebrow {
+  margin: 0 0 0.45rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgb(244 108 56 / 90%);
+}
+
+.cert-skills-title {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: rgb(245 245 245 / 95%);
+}
+
+.cert-skills-intro {
+  margin: 0.6rem 0 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: rgb(224 224 224 / 72%);
+}
+
+.cert-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.cert-skill-card {
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 16px;
+  padding: 0.95rem 1rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+}
+
+.cert-skill-card-title {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgb(245 245 245 / 90%);
+}
+
+.cert-skill-card-text {
+  margin: 0.45rem 0 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.58;
+  color: rgb(224 224 224 / 72%);
+}
+
+.cert-skills-edge {
+  margin-top: 0.9rem;
+  border: 1px solid rgb(244 108 56 / 22%);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  background: linear-gradient(90deg, rgba(244, 108, 56, 0.1), rgba(244, 108, 56, 0.03));
+}
+
+.cert-skills-edge-title {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(244 108 56 / 92%);
+}
+
+.cert-skills-edge-text {
+  margin: 0.45rem 0 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: rgb(236 236 236 / 84%);
 }
 
 .cert-panel-glow {
@@ -251,5 +345,14 @@
 @media (max-width: 768px) {
   .cert-container {
     padding: 1.3rem;
+  }
+
+  .cert-skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-skills-section {
+    border-radius: 18px;
+    margin-bottom: 1.8rem;
   }
 }

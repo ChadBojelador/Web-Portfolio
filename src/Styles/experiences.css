@@ -6,7 +6,7 @@
 .exp-section {
   position: relative;
   width: 100%;
-  background: rgb(21, 19, 18);
+  background: #111111;
   overflow: hidden;
   padding: clamp(5rem, 10vh, 8rem) clamp(1.25rem, 5vw, 4rem);
   z-index: 0;
@@ -14,27 +14,15 @@
 
 /* ── Ambient blobs ───────────────────────── */
 .exp-blob {
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(90px);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 .exp-blob-1 {
-  width: clamp(280px, 40vw, 520px);
-  height: clamp(280px, 40vw, 520px);
-  background: radial-gradient(circle, rgba(244, 108, 56, 0.07) 0%, transparent 70%);
-  top: -6%;
-  left: -8%;
+  display: none;
 }
 
 .exp-blob-2 {
-  width: clamp(200px, 30vw, 400px);
-  height: clamp(200px, 30vw, 400px);
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
-  bottom: 5%;
-  right: 3%;
+  display: none;
 }
 
 /* ── Section header ──────────────────────── */
@@ -42,11 +30,18 @@
   position: relative;
   z-index: 2;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
   max-width: 640px;
   margin: 0 auto clamp(3.5rem, 8vh, 6rem);
 }
 
 .exp-eyebrow {
+  display: block;
+  width: 100%;
   font-family: 'Poppins', sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.22em;
@@ -56,6 +51,8 @@
 }
 
 .exp-section-title {
+  display: block;
+  width: 100%;
   font-family: 'Poppins', sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
@@ -77,6 +74,8 @@
 }
 
 .exp-section-subtitle {
+  display: block;
+  width: 100%;
   font-family: 'Poppins', sans-serif;
   font-size: clamp(0.9rem, 2vw, 1rem);
   color: rgba(255, 255, 255, 0.45);
