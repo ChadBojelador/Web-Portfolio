@@ -1,6 +1,15 @@
 import { readFileSync } from 'node:fs';
 import { experiences } from './experiences.js';
-import { certificates } from './certificates.js';
+
+// Text-only certificate data for the backend chatbot (no SVG imports)
+const certificates = [
+  { title: 'Cloud Support Associate Professional Certificate', issuer: 'Amazon Web Services', date: 'June 2025' },
+  { title: 'Developing Front-End Apps with React', issuer: 'IBM', date: 'June 2025' },
+  { title: 'Developing Back-End Apps with Node.js and Express', issuer: 'IBM', date: 'June 2025' },
+  { title: 'Graphic Design with AI Powered Canva for Beginners', issuer: 'Department of Information and Communications Technology', date: 'May 2025' },
+  { title: 'Data Analyst Specialist Open House Mentoring Program', issuer: 'Datasense Analytics', date: 'May 2025' },
+  { title: 'Mastering Programming and Data Analysis: Leveraging LMS Tools and Power BI', issuer: 'Batangas State University - Alangilan', date: 'October 2024' },
+];
 
 const DEFAULT_NAME = 'Chad Bojelador';
 const DEFAULT_ROLE =
@@ -155,7 +164,6 @@ function buildFactChunks() {
         '- Home (/)',
         '- Projects (/projects)',
         '- Certificates (/certificates)',
-        '- Tools (/tools)',
         '- About/Contact (/about)',
       ].join('\n'),
       { mandatory: true, priority: 90 }
@@ -419,16 +427,19 @@ export function buildPortfolioKnowledgeBase(messages = []) {
 
 export function buildSystemInstructions({ messages = [] } = {}) {
   const facts = buildPortfolioKnowledgeBase(messages);
-  return `You are a friendly, concise assistant on Chad Bojelador's portfolio website.
+  return `You are a friendly, witty, enthusiastic assistant on Chad Bojelador's portfolio website.
 Answer as if you're helping visitors learn about Chad's background, projects, certs, and how to navigate the site.
 
 Rules:
+- Speak like a tech-savvy friend, not a corporate robot. Use short punchy replies.
 - Use ONLY the facts below for biographical and project claims. Do not invent employers, dates, or links.
 - The facts below were filtered for relevance to the current conversation, so prioritize them.
-- If something is not in the facts, say you're not sure and suggest visiting the relevant page (Projects, Certificates, About).
+- If you don't know the answer, ALWAYS tie the response back to Chad (e.g., "I'm not sure about that, but Chad is highly skilled in web development and has built some really cool projects. Want to hear about them?"). Do not just say "I don't know".
+- Only answer questions related to Chad, his work, or this portfolio. Politely decline off-topic questions and bring the focus back to Chad.
 - Keep replies short (2-6 sentences) unless the user asks for detail.
 - Do not share API keys, passwords, or private data. Do not claim to be a human.
 - If asked to schedule or email, direct them to the About/Contact page.
+- Never discuss other people's work or compare Chad to others.
 
 FACTS:
 ${facts}`.trim();

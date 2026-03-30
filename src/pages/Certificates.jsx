@@ -57,6 +57,12 @@ const Certificates = () => {
         <CustomCursor />
       </div>
 
+      <Experiences />
+
+      <div className="exp-cert-divider">
+        <div className="exp-cert-divider-dot"></div>
+      </div>
+
       <section className="cert-toolbar" aria-label="Certificate Showcase">
         <h1 className="cert-title">My Certificates</h1>
         <div className="cert-meta">
@@ -96,8 +102,6 @@ const Certificates = () => {
           ))}
         </div>
       </div>
-
-      <Experiences />
     </div>
   );
 };

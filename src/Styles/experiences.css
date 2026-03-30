@@ -1,314 +1,378 @@
-/* experiences.css */
-.experience-card.animate-in {
-  animation: fadeInUp 0.8s forwards;
-}
+/* =========================================
+   experiences.css  — Premium Timeline
+   ========================================= */
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Floating elements */
-.floating-experience {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.05);
-  font-size: 8rem;
-  z-index: 0;
-  user-select: none;
-  pointer-events: none;
-  font-weight: 800;
-}
-
-.floating-experience:nth-child(1) {
-  top: 10%;
-  left: 5%;
-  transform: rotate(-15deg);
-}
-
-.floating-experience:nth-child(2) {
-  top: 40%;
-  right: 10%;
-  transform: rotate(10deg);
-}
-
-.floating-experience:nth-child(3) {
-  bottom: 20%;
-  left: 8%;
-  transform: rotate(5deg);
-}
-
-/* Add these to your existing .experience-card styles */
-.experience-card {
-  opacity: 0; /* Start hidden */
-  transform: translateY(30px);
-}
-.experiences-container {
-  background-color: rgb(21, 19, 18);
-  color: #f0f0f0;
-  font-family: 'Inter', sans-serif;
-  padding: 4rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+/* ── Section wrapper ─────────────────────── */
+.exp-section {
   position: relative;
+  width: 100%;
+  background: rgb(21, 19, 18);
   overflow: hidden;
+  padding: clamp(5rem, 10vh, 8rem) clamp(1.25rem, 5vw, 4rem);
+  z-index: 0;
 }
 
-.experiences-header {
-  text-align: center;
-  margin-bottom: 4rem;
+/* ── Ambient blobs ───────────────────────── */
+.exp-blob {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.exp-blob-1 {
+  width: clamp(280px, 40vw, 520px);
+  height: clamp(280px, 40vw, 520px);
+  background: radial-gradient(circle, rgba(244, 108, 56, 0.07) 0%, transparent 70%);
+  top: -6%;
+  left: -8%;
+}
+
+.exp-blob-2 {
+  width: clamp(200px, 30vw, 400px);
+  height: clamp(200px, 30vw, 400px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
+  bottom: 5%;
+  right: 3%;
+}
+
+/* ── Section header ──────────────────────── */
+.exp-section-header {
   position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto clamp(3.5rem, 8vh, 6rem);
 }
 
-.experiences-title {
-  font-size: 2.8rem;
+.exp-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(244, 108, 56, 0.85);
+  margin-bottom: 0.85rem;
+}
+
+.exp-section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
-  background: linear-gradient(90deg, #ffffff, #cccccc);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ffffff 30%, rgba(255,255,255,0.5) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  letter-spacing: -0.05em;
-  margin-bottom: 1.5rem;
+  margin: 0 0 1.25rem;
 }
 
-.title-divider {
-  height: 3px;
-  width: 120px;
-  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));
+.exp-title-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(244, 108, 56, 0.85), transparent);
+  margin: 0 auto 1.1rem;
+  border-radius: 999px;
+}
+
+.exp-section-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Timeline wrapper ────────────────────── */
+.exp-timeline {
+  position: relative;
+  z-index: 2;
+  max-width: 840px;
   margin: 0 auto;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.8rem, 4vh, 3rem);
+  padding-left: 2.5rem;
 }
 
-.title-divider::after {
-  content: '';
+/* ── Vertical track ──────────────────────── */
+.exp-track {
   position: absolute;
-  top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(255,255,255,0.2);
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: lineGrow 1.2s 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-}
-
-.experiences-list {
-  display: grid;
-  gap: 2.8rem;
-}
-
-.experience-card {
-  background: rgba(30, 28, 27, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 2.2rem;
-  position: relative;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.experience-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+.exp-track-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(244, 108, 56, 0.7),
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.06)
+  );
+  transform-origin: top;
+  will-change: transform;
+  border-radius: 999px;
 }
 
-.experience-card::before {
-  content: '';
+/* ── Timeline item ───────────────────────── */
+.exp-timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ── Node dot ────────────────────────────── */
+.exp-node {
+  position: absolute;
+  left: calc(-2.5rem - 6px);   /* offset from timeline padding */
+  top: 1.6rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(244, 108, 56, 0.75);
+  background: rgb(21, 19, 18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 3;
+  box-shadow: 0 0 12px rgba(244, 108, 56, 0.35);
+}
+
+.exp-node-inner {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(244, 108, 56, 0.9);
+}
+
+/* ── Card ────────────────────────────────── */
+.exp-card {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(35, 33, 32, 0.92) 0%,
+    rgba(28, 26, 25, 0.96) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.8rem 2rem 1.9rem;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform;
+}
+
+.exp-card:hover {
+  border-color: rgba(244, 108, 56, 0.25);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(244, 108, 56, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transform: translateY(-4px);
+}
+
+/* Accent bar along the top-left edge */
+.exp-card-accent {
   position: absolute;
   top: 0;
   left: 0;
-  width: 4px;
+  width: 3px;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+  background: linear-gradient(
+    to bottom,
+    rgba(244, 108, 56, 0.85) 0%,
+    rgba(244, 108, 56, 0.2) 60%,
+    transparent 100%
+  );
+  border-radius: 999px 0 0 999px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.experience-card:hover::before {
+.exp-card:hover .exp-card-accent {
   opacity: 1;
 }
 
-.experience-header {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.experience-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin: 0 0 0.8rem 0;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-}
-
-.experience-subheader {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.experience-company {
-  font-weight: 500;
-  font-size: 1.15rem;
-  position: relative;
-  padding-left: 1.8rem;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.experience-company::before {
-  content: "▹";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.experience-period {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.9);
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  backdrop-filter: blur(4px);
-}
-
-.experience-description {
-  line-height: 1.7;
-  margin-bottom: 1.8rem;
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.achievements-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 1.2rem;
-  position: relative;
-  padding-left: 1.8rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.achievements-title::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 10px;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  transform: translateY(-50%);
-}
-
-.achievements-list {
-  padding-left: 1.8rem;
-}
-
-.achievement-item {
+/* ── Card header ─────────────────────────── */
+.exp-card-header {
   margin-bottom: 1rem;
-  position: relative;
-  padding-left: 1.8rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
+}
+
+.exp-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.exp-period-badge {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244, 108, 56, 0.9);
+  background: rgba(244, 108, 56, 0.1);
+  border: 1px solid rgba(244, 108, 56, 0.2);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+}
+
+.exp-company {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.exp-card-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.35;
+  letter-spacing: -0.012em;
+  margin: 0;
+}
+
+/* ── Description ─────────────────────────── */
+.exp-card-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 1.4rem;
+}
+
+/* ── Achievements list ───────────────────── */
+.exp-achievements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.exp-achievements-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  margin-bottom: 0.3rem;
+}
+
+.exp-achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.exp-achievement-item {
   display: flex;
   align-items: flex-start;
+  gap: 0.65rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.55;
 }
 
-.achievement-marker {
-  position: absolute;
-  left: 0;
-  top: 0.65rem;
-  width: 8px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.6);
+.exp-bullet {
+  flex-shrink: 0;
+  margin-top: 0.55rem;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  transform: translateY(-50%);
+  background: rgba(244, 108, 56, 0.75);
+  box-shadow: 0 0 6px rgba(244, 108, 56, 0.35);
 }
 
-/* Animations */
-@keyframes lineGrow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+/* ── Section divider ─────────────────────── */
+.exp-cert-divider {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: clamp(1rem, 3vh, 2rem) 0;
 }
 
-/* Floating elements */
-.floating-experience {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.05);
-  font-size: 8rem;
-  z-index: 0;
-  user-select: none;
-  pointer-events: none;
-  font-weight: 800;
+.exp-cert-divider::before,
+.exp-cert-divider::after {
+  content: '';
+  flex: 1;
+  max-width: 260px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12));
 }
 
-.floating-experience:nth-child(1) {
-  top: 10%;
-  left: 5%;
-  transform: rotate(-15deg);
+.exp-cert-divider::after {
+  background: linear-gradient(90deg, rgba(255,255,255,0.12), transparent);
 }
 
-.floating-experience:nth-child(2) {
-  top: 40%;
-  right: 10%;
-  transform: rotate(10deg);
+.exp-cert-divider-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
 }
 
-.floating-experience:nth-child(3) {
-  bottom: 20%;
-  left: 8%;
-  transform: rotate(5deg);
-}
-
-/* Responsive Design */
+/* ── Responsive ──────────────────────────── */
 @media (max-width: 768px) {
-  .experiences-container {
-    padding: 3rem 1.5rem;
+  .exp-section {
+    padding: 4rem 1.25rem;
   }
-  
-  .experiences-title {
-    font-size: 2.3rem;
+
+  .exp-timeline {
+    padding-left: 1.75rem;
   }
-  
-  .experience-subheader {
-    flex-direction: column;
-    gap: 0.8rem;
+
+  .exp-node {
+    left: calc(-1.75rem - 5px);
+    top: 1.2rem;
+    width: 12px;
+    height: 12px;
   }
-  
-  .experience-period {
-    align-self: flex-start;
+
+  .exp-card {
+    padding: 1.4rem 1.4rem 1.5rem;
   }
-  
-  .experience-card {
-    padding: 1.8rem;
+
+  .exp-card-title {
+    font-size: 1rem;
+  }
+
+  .exp-card-desc,
+  .exp-achievement-item {
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
-  .experiences-title {
-    font-size: 2rem;
+  .exp-section-title {
+    font-size: 1.7rem;
   }
-  
-  .experience-title {
-    font-size: 1.6rem;
-  }
-  
-  .experience-card {
-    padding: 1.5rem;
-  }
-  
-  .experience-description {
-    font-size: 1rem;
+
+  .exp-card {
+    padding: 1.2rem 1.2rem 1.3rem;
   }
 }

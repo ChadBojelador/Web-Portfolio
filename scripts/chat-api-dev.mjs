@@ -1,7 +1,7 @@
 /**
- * Local chat API for Vite dev (proxy /api -> this server).
+ * Local chat API dev server (proxied from Vite on /api/chat).
  * Run: npm run dev:api
- * Requires OPENAI_API_KEY in .env.local (load manually) or environment.
+ * Requires GEMINI_API_KEY in .env
  */
 import 'dotenv/config';
 import http from 'node:http';
@@ -24,6 +24,7 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // CORS pre-flight
   if (req.method === 'OPTIONS') {
     res.writeHead(204, {
       'Access-Control-Allow-Origin': '*',
@@ -35,11 +36,12 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (req.method !== 'POST') {
-    res.writeHead(405, { 'Content-Type': 'application/json' });
+    res.writeHead(405, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify({ error: 'Method not allowed' }));
     return;
   }
 
+  // Read body
   let buf = '';
   for await (const chunk of req) {
     buf += chunk;
@@ -78,11 +80,12 @@ const server = http.createServer(async (req, res) => {
       res.end(JSON.stringify({ error: out.error }));
       return;
     }
-    res.writeHead(200, {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    });
-    res.end(JSON.stringify({ reply: out.reply }));
+    
+    // Setting CORS headers before piping stream
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    
+    // The Vercel AI SDK seamlessly pipes the readable stream to the Node response
+    out.stream.pipeDataStreamToResponse(res);
   } catch (e) {
     console.error(e);
     res.writeHead(500, {
