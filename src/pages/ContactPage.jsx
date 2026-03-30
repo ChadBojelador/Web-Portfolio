@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import '../Styles/contact.css';
 import Navigation from '../Components/Navigation';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 const EMAILJS_SERVICE_ID  = 'service_x5r909u';
 const EMAILJS_TEMPLATE_ID = 'template_51utv48';
