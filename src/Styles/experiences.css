@@ -303,6 +303,40 @@
   box-shadow: 0 0 6px rgba(244, 108, 56, 0.35);
 }
 
+/* ── View more control ───────────────────── */
+.exp-view-more-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1rem, 3vh, 1.8rem);
+}
+
+.exp-view-more-btn {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(245, 245, 245, 0.92);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.52rem 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+.exp-view-more-btn:hover {
+  border-color: rgba(244, 108, 56, 0.5);
+  background: rgba(244, 108, 56, 0.1);
+  transform: translateY(-1px);
+}
+
+.exp-view-more-btn:focus-visible {
+  outline: 2px solid rgba(244, 108, 56, 0.65);
+  outline-offset: 2px;
+}
+
 /* ── Section divider ─────────────────────── */
 .exp-cert-divider {
   position: relative;

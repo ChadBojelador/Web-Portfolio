@@ -788,8 +788,8 @@ aside * {
   .main-contain aside {
     position: static;
     top: auto;
-    width: 100%;
-    max-width: 100%;
+    width: min(94vw, 360px);
+    max-width: min(94vw, 360px);
     height: auto;
     margin: 0 auto 2vh;
     padding: 15px;
@@ -886,14 +886,18 @@ aside * {
   }
 
   .description-pic p {
-    font-size: 0.9rem;
-    line-height: 1.35;
+    font-size: clamp(0.76rem, 3.2vw, 0.88rem);
+    line-height: 1.32;
   }
 
   .Title {
-    font-size: clamp(2rem, 9vw, 2.9rem);
-    line-height: 1.2;
-    margin-top: 0.5rem;
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+    line-height: 1.1;
+    margin-top: 0.35rem;
+  }
+
+  #title1 {
+    margin-top: 0.05rem;
   }
 
   .title-container {
@@ -902,7 +906,7 @@ aside * {
   }
 
   .title-container p {
-    font-size: clamp(0.95rem, 3.9vw, 1.1rem);
+    font-size: clamp(0.86rem, 3.5vw, 1rem);
   }
 
   .p-container {
@@ -910,8 +914,8 @@ aside * {
   }
 
   .p-container p {
-    font-size: 0.96rem;
-    line-height: 1.35;
+    font-size: clamp(0.82rem, 3.4vw, 0.93rem);
+    line-height: 1.32;
   }
 
   .boxes {
@@ -934,5 +938,20 @@ aside * {
   .project-showcase-title {
     margin-bottom: 1.15rem;
     font-size: clamp(1.35rem, 6vw, 1.9rem);
+  }
+}
+
+@media (max-width: 420px) {
+  .main-contain aside {
+    width: min(86vw, 330px);
+    max-width: min(86vw, 330px);
+  }
+
+  .description-pic p {
+    font-size: 0.76rem;
+  }
+
+  .p-container p {
+    font-size: 0.84rem;
   }
 }

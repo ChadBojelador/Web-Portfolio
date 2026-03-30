@@ -395,6 +395,15 @@ nav {
   .contact-content {
     grid-template-columns: 1fr;
   }
+
+  .contact-form-container {
+    order: 1;
+  }
+
+  .contact-info {
+    order: 2;
+    margin-top: 1rem;
+  }
   
   .contact-container .Title {
     font-size: 2.5rem;

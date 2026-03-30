@@ -57,7 +57,66 @@ const Certificates = () => {
         <CustomCursor />
       </div>
 
-      <Experiences />
+      <section className="cert-intro-layout" aria-label="Skills and Professional Journey">
+        <section className="cert-skills-section" aria-label="Skills">
+          <div className="cert-skills-header">
+            <p className="cert-skills-eyebrow">Skills</p>
+            <h2 className="cert-skills-title">Architecture-led execution with AI at the core</h2>
+            <p className="cert-skills-intro">
+              I build fast, think in systems, and use AI as a core part of how I create.
+            </p>
+          </div>
+
+          <div className="cert-skills-grid">
+            <article className="cert-skill-card">
+              <h3 className="cert-skill-card-title">Agentic AI &amp; Tools</h3>
+              <p className="cert-skill-card-text">
+                Design and use AI agent workflows for real output, not just prompts.
+              </p>
+              <p className="cert-skill-card-text">
+                Tools: Google ADK, OpenClaw, Claude CLI, Cursor, Antigravity.
+              </p>
+              <p className="cert-skill-card-text">Multi-model and tool integration mindset.</p>
+            </article>
+
+            <article className="cert-skill-card">
+              <h3 className="cert-skill-card-title">Architecture &amp; Systems Thinking</h3>
+              <p className="cert-skill-card-text">Architecture-first before coding.</p>
+              <p className="cert-skill-card-text">
+                Build scalable, modular, and automated workflows.
+              </p>
+              <p className="cert-skill-card-text">Turn ideas into structured systems.</p>
+            </article>
+
+            <article className="cert-skill-card">
+              <h3 className="cert-skill-card-title">Full-Stack Development</h3>
+              <p className="cert-skill-card-text">
+                Strong foundation in React for frontend and Node.js for backend.
+              </p>
+              <p className="cert-skill-card-text">
+                Build and integrate APIs, databases, and UI systems.
+              </p>
+            </article>
+
+            <article className="cert-skill-card">
+              <h3 className="cert-skill-card-title">AI-Augmented Workflow</h3>
+              <p className="cert-skill-card-text">Use AI to code, debug, and accelerate development.</p>
+              <p className="cert-skill-card-text">
+                Focus on speed, efficiency, and output scaling.
+              </p>
+            </article>
+          </div>
+
+          <aside className="cert-skills-edge" aria-label="My edge">
+            <h3 className="cert-skills-edge-title">My Edge</h3>
+            <p className="cert-skills-edge-text">
+              I do not just build apps. I design systems where AI does the work.
+            </p>
+          </aside>
+        </section>
+
+        <Experiences className="cert-experience-panel" />
+      </section>
 
       <div className="exp-cert-divider">
         <div className="exp-cert-divider-dot"></div>
@@ -70,63 +129,6 @@ const Certificates = () => {
             {String(certificates.length).padStart(2, '0')} certificates
           </span>
         </div>
-      </section>
-
-      <section className="cert-skills-section" aria-label="Skills">
-        <div className="cert-skills-header">
-          <p className="cert-skills-eyebrow">Skills</p>
-          <h2 className="cert-skills-title">Architecture-led execution with AI at the core</h2>
-          <p className="cert-skills-intro">
-            I build fast, think in systems, and use AI as a core part of how I create.
-          </p>
-        </div>
-
-        <div className="cert-skills-grid">
-          <article className="cert-skill-card">
-            <h3 className="cert-skill-card-title">Agentic AI &amp; Tools</h3>
-            <p className="cert-skill-card-text">
-              Design and use AI agent workflows for real output, not just prompts.
-            </p>
-            <p className="cert-skill-card-text">
-              Tools: Google ADK, OpenClaw, Claude CLI, Cursor, Antigravity.
-            </p>
-            <p className="cert-skill-card-text">Multi-model and tool integration mindset.</p>
-          </article>
-
-          <article className="cert-skill-card">
-            <h3 className="cert-skill-card-title">Architecture &amp; Systems Thinking</h3>
-            <p className="cert-skill-card-text">Architecture-first before coding.</p>
-            <p className="cert-skill-card-text">
-              Build scalable, modular, and automated workflows.
-            </p>
-            <p className="cert-skill-card-text">Turn ideas into structured systems.</p>
-          </article>
-
-          <article className="cert-skill-card">
-            <h3 className="cert-skill-card-title">Full-Stack Development</h3>
-            <p className="cert-skill-card-text">
-              Strong foundation in React for frontend and Node.js for backend.
-            </p>
-            <p className="cert-skill-card-text">
-              Build and integrate APIs, databases, and UI systems.
-            </p>
-          </article>
-
-          <article className="cert-skill-card">
-            <h3 className="cert-skill-card-title">AI-Augmented Workflow</h3>
-            <p className="cert-skill-card-text">Use AI to code, debug, and accelerate development.</p>
-            <p className="cert-skill-card-text">
-              Focus on speed, efficiency, and output scaling.
-            </p>
-          </article>
-        </div>
-
-        <aside className="cert-skills-edge" aria-label="My edge">
-          <h3 className="cert-skills-edge-title">My Edge</h3>
-          <p className="cert-skills-edge-text">
-            I do not just build apps. I design systems where AI does the work.
-          </p>
-        </aside>
       </section>
 
       <div className="w-full max-w-325 mx-auto overflow-hidden py-4 cursor-grab active:cursor-grabbing pb-8">

@@ -72,16 +72,21 @@ function AppShell() {
       const isMobile = window.innerWidth <= 768;
 
       if (isMobile) {
-        // Fallback for mobile: stick it right below the profile card
-        const aside = document.querySelector('.left-column aside');
-        if (aside) {
-          const rect = aside.getBoundingClientRect();
+        // Mobile: place card directly below the accomplishments section
+        const carousel = document.getElementById('carousel-section');
+        const contentContainer = document.querySelector('.content-container');
+        if (carousel) {
+          const carouselRect = carousel.getBoundingClientRect();
+          const containerRect = contentContainer?.getBoundingClientRect();
+
           setHomeStyle({
             position: 'absolute',
-            top: `${rect.bottom + window.scrollY + 20}px`,
+            top: `${carouselRect.bottom + window.scrollY + 16}px`,
             left: '50%',
             transform: 'translateX(-50%)',
-            width: 'min(94vw, 360px)'
+            width: containerRect
+              ? `${Math.min(containerRect.width, window.innerWidth * 0.94)}px`
+              : 'min(94vw, 360px)'
           });
         }
       } else {

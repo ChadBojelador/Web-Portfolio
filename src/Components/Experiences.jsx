@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { experiences } from '../data/experiences';
 import '../Styles/experiences.css';
@@ -80,12 +80,19 @@ function TimelineCard({ exp, index }) {
   );
 }
 
-export default function Experiences() {
+export default function Experiences({ className = '' }) {
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true });
+  const [showAll, setShowAll] = useState(false);
+
+  const maxVisible = 4;
+  const hasMoreThanLimit = experiences.length > maxVisible;
+  const visibleExperiences = hasMoreThanLimit && !showAll
+    ? experiences.slice(0, maxVisible)
+    : experiences;
 
   return (
-    <section className="exp-section" aria-label="Professional Experience">
+    <section className={`exp-section ${className}`.trim()} aria-label="Professional Experience">
       {/* Ambient blobs */}
       <div className="exp-blob exp-blob-1" aria-hidden="true" />
       <div className="exp-blob exp-blob-2" aria-hidden="true" />
@@ -116,10 +123,24 @@ export default function Experiences() {
           />
         </div>
 
-        {experiences.map((exp, index) => (
+        {visibleExperiences.map((exp, index) => (
           <TimelineCard key={index} exp={exp} index={index} />
         ))}
       </div>
+
+      {hasMoreThanLimit && (
+        <div className="exp-view-more-wrap">
+          <button
+            type="button"
+            className="exp-view-more-btn"
+            onClick={() => setShowAll((prev) => !prev)}
+            aria-expanded={showAll}
+            aria-label={showAll ? 'Show fewer experiences' : 'Show more experiences'}
+          >
+            {showAll ? 'View Less' : `View More (${experiences.length - maxVisible})`}
+          </button>
+        </div>
+      )}
     </section>
   );
 }
