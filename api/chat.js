@@ -15,6 +15,7 @@ export default async function handler(req, res) {
 
   if (req.method !== 'POST') {
     res.statusCode = 405;
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ error: 'Method not allowed' }));
     return;
@@ -31,6 +32,7 @@ export default async function handler(req, res) {
   const sizeCheck = validateBodySize(raw);
   if (!sizeCheck.ok) {
     res.statusCode = 400;
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ error: sizeCheck.error }));
     return;
@@ -41,6 +43,7 @@ export default async function handler(req, res) {
     body = JSON.parse(raw || '{}');
   } catch {
     res.statusCode = 400;
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ error: 'Invalid JSON' }));
     return;
@@ -52,28 +55,17 @@ export default async function handler(req, res) {
     req.socket?.remoteAddress ||
     'unknown';
 
-  // handleChatCore now returns a Web API Response (streaming)
-  const webRes = await handleChatCore(body, process.env, ip);
-
-  // Forward status + headers
-  res.statusCode = webRes.status;
-  webRes.headers.forEach((value, key) => res.setHeader(key, value));
-
-  // Pipe the streaming body to Node's ServerResponse
-  if (webRes.body) {
-    const reader = webRes.body.getReader();
-    try {
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        res.write(value);
-      }
-    } finally {
-      res.end();
-    }
-  } else {
-    res.end();
+  const out = await handleChatCore(body, process.env, ip);
+  if (out.error) {
+    res.statusCode = out.status || 400;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ error: out.error }));
+    return;
   }
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  out.stream.pipeDataStreamToResponse(res);
 }
 
 function readBody(req) {
