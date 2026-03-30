@@ -68,7 +68,7 @@ function App() {
                     Chad Bojelador
                   </motion.h1>
                   <motion.p variants={itemVariants}>
-                    A Software Developer as well as a Bachelor of Science in Information Technology.
+                    A Student Developer as well as a Bachelor of Science in Information Technology.
                   </motion.p>
                 </motion.div>
               </aside>
@@ -90,7 +90,7 @@ function App() {
                   animate={{ x: 0 }}
                   transition={{ type: 'spring' }}
                 >
-                  SOFTWARE
+                  STUDENT
                 </motion.h1>
                 <motion.h1
                   className="Title"
@@ -118,7 +118,7 @@ function App() {
                 initial="hidden"
                 animate="visible"
               >
-                {['ReactJS','C++','Java','Python','Qt','MySQL','NodeJS','HTML','CSS','Javascript','Tailwind'].map((tech, idx) => (
+                {['React','Nodejs','Express','NoSQL','SQL','LangChain','HuggingFace','GoogleADK','Claude CLI','Anti Gravity','Python'].map((tech, idx) => (
                   <motion.div
                     key={idx}
                     className={`box box-${idx+1}`}
