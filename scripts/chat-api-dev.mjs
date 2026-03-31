@@ -29,7 +29,7 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(204, {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers': 'Content-Type, x-user-tier',
     });
     res.end();
     return;
@@ -85,7 +85,7 @@ const server = http.createServer(async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     
     // The Vercel AI SDK seamlessly pipes the readable stream to the Node response
-    out.stream.pipeDataStreamToResponse(res);
+    out.stream.pipeUIMessageStreamToResponse(res);
   } catch (e) {
     console.error(e);
     res.writeHead(500, {

@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-user-tier');
     res.statusCode = 204;
     res.end();
     return;
@@ -50,12 +50,16 @@ export default async function handler(req, res) {
   }
 
   const forwarded = req.headers['x-forwarded-for'];
+  const tierHeader = req.headers['x-user-tier'];
+  const userTier =
+    (typeof tierHeader === 'string' ? tierHeader : Array.isArray(tierHeader) ? tierHeader[0] : '') ||
+    'free';
   const ip =
     (typeof forwarded === 'string' ? forwarded.split(',')[0].trim() : null) ||
     req.socket?.remoteAddress ||
     'unknown';
 
-  const out = await handleChatCore(body, process.env, ip);
+  const out = await handleChatCore(body, process.env, ip, userTier);
   if (out.error) {
     res.statusCode = out.status || 400;
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -65,7 +69,7 @@ export default async function handler(req, res) {
   }
 
   res.setHeader('Access-Control-Allow-Origin', '*');
-  out.stream.pipeDataStreamToResponse(res);
+  out.stream.pipeUIMessageStreamToResponse(res);
 }
 
 function readBody(req) {

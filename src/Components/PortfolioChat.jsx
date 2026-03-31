@@ -4,6 +4,22 @@ import ReactMarkdown from 'react-markdown';
 import { useChat } from '@ai-sdk/react';
 import '../Styles/chat-widget.css';
 
+function extractTextFromPart(part) {
+  if (!part) return '';
+  if (typeof part === 'string') return part;
+  if (typeof part.text === 'string') return part.text;
+  if (typeof part.content === 'string') return part.content;
+  return '';
+}
+
+function getMessageText(msg) {
+  if (!msg) return '';
+  if (typeof msg.content === 'string') return msg.content;
+  if (Array.isArray(msg.content)) return msg.content.map(extractTextFromPart).join('');
+  if (Array.isArray(msg.parts)) return msg.parts.map(extractTextFromPart).join('');
+  return '';
+}
+
 const SUGGESTIONS = [
   "What projects has Chad built?",
   "Tell me about his technical skills.",
@@ -19,19 +35,16 @@ function chatEndpoint() {
   return '/api/chat';
 }
 
-function formatTime(ts) {
-  if (!ts) return '';
-  return new Intl.DateTimeFormat('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true
-  }).format(new Date(ts));
+function chatHeaders() {
+  const tier = String(import.meta.env.VITE_CHAT_USER_TIER || 'free').trim().toLowerCase();
+  return { 'x-user-tier': tier || 'free' };
 }
 
 export default function PortfolioChat() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [copiedId, setCopiedId] = useState(null);
+  const [draft, setDraft] = useState('');
   const listRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -40,6 +53,7 @@ export default function PortfolioChat() {
     input,
     handleInputChange,
     handleSubmit,
+    sendMessage,
     isLoading,
     stop,
     error,
@@ -48,8 +62,52 @@ export default function PortfolioChat() {
     append
   } = useChat({
     api: chatEndpoint(),
+    headers: chatHeaders(),
     onError: (err) => console.error('Chat error:', err),
   });
+  const usesHookInput =
+    typeof input === 'string' &&
+    typeof handleInputChange === 'function' &&
+    typeof handleSubmit === 'function';
+  const safeInput = usesHookInput ? input : draft;
+
+  const onInputChange = usesHookInput
+    ? handleInputChange
+    : (e) => {
+        setDraft(e.target.value);
+      };
+
+  const sendUserMessage = async (text) => {
+    const trimmed = String(text || '').trim();
+    if (!trimmed || isLoading) return;
+
+    if (typeof sendMessage === 'function') {
+      await sendMessage({ text: trimmed });
+      return;
+    }
+
+    if (typeof append === 'function') {
+      await append({ role: 'user', content: trimmed });
+      return;
+    }
+
+    if (typeof handleInputChange === 'function') {
+      handleInputChange({ target: { value: trimmed } });
+      return;
+    }
+
+    setDraft(trimmed);
+  };
+
+  const onFormSubmit = usesHookInput
+    ? handleSubmit
+    : async (e) => {
+        e.preventDefault();
+        const text = draft.trim();
+        if (!text || isLoading) return;
+        await sendUserMessage(text);
+        setDraft('');
+      };
 
   const getGreeting = () => {
     if (location.pathname === '/projects') return "Hi! I can tell you all about Chad's projects. What would you like to know?";
@@ -84,8 +142,8 @@ export default function PortfolioChat() {
     }
   };
 
-  const handleChipClick = (suggestion) => {
-    append({ role: 'user', content: suggestion });
+  const handleChipClick = async (suggestion) => {
+    await sendUserMessage(suggestion);
   };
   
   return (
@@ -167,16 +225,16 @@ export default function PortfolioChat() {
                   <div className={`portfolio-chat-msg portfolio-chat-msg--${msg.role}`}>
                      {msg.role === 'assistant' ? (
                        <div className="portfolio-chat-markdown prose prose-invert max-w-none text-sm leading-snug">
-                         <ReactMarkdown>{msg.content}</ReactMarkdown>
+                         <ReactMarkdown>{getMessageText(msg)}</ReactMarkdown>
                        </div>
                      ) : (
-                       msg.content
+                       getMessageText(msg)
                      )}
                      
                      {msg.role === 'assistant' && (
                        <button 
                          className="portfolio-chat-copy-btn" 
-                         onClick={() => copyToClipboard(msg.content, msg.id || i)}
+                         onClick={() => copyToClipboard(getMessageText(msg), msg.id || i)}
                          title="Copy message"
                        >
                          {copiedId === (msg.id || i) ? (
@@ -218,14 +276,14 @@ export default function PortfolioChat() {
             
             <form
               className="portfolio-chat-form"
-              onSubmit={handleSubmit}
+              onSubmit={onFormSubmit}
             >
               <input
                 ref={inputRef}
                 className="portfolio-chat-input"
                 placeholder="Message..."
-                value={input}
-                onChange={handleInputChange}
+                value={safeInput}
+                onChange={onInputChange}
                 disabled={isLoading && error === undefined}
                 autoComplete="off"
                 aria-label="Message"
@@ -243,7 +301,7 @@ export default function PortfolioChat() {
                 <button
                   type="submit"
                   className="portfolio-chat-send"
-                  disabled={!input.trim()}
+                  disabled={!safeInput.trim()}
                 >
                   Send
                 </button>
