@@ -20,7 +20,7 @@ const glowStyle = {
 };
 
 function Projects() {
-  const isUnderDevelopment = true;
+  const isUnderDevelopment = false;
   const hasProjects = projects.length > 0;
   const projectCount = String(projects.length).padStart(2, '0');
 
@@ -59,10 +59,12 @@ function Projects() {
               <ProjectPanel
                 key={index}
                 title={project.title}
+                description={project.description}
                 details={project.details}
                 picture={project.picture}
                 videoSrc={project.videoSrc}
                 link={project.link}
+                githubLink={project.githubLink}
                 mediaType={project.mediaType}
                 tags={project.tags}
                 projectIndex={index}
